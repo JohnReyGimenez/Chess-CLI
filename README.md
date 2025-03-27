@@ -9,3 +9,9 @@ A command-line Chess game built with Ruby. This project focuses on object-orient
 - Check and checkmate detection
 - Save and load game functionality
 
+## Installation
+Clone the repository and navigate to the project directory:
+
+```bash
+git clone https://github.com/JohnReyGimenez/Chess.git
+cd Chess
