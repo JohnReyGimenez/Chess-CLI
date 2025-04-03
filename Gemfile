@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-gem "colorize"  
-gem "tty-table"
+gem 'colorize'
 gem 'rubocop'
+gem 'tty-table'
 # gem "rails"
