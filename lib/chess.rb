@@ -2,6 +2,9 @@
 
 require_relative 'chess/board'
 require_relative 'chess/game'
+require_relative 'chess/game_logic'
+require_relative 'chess/chess_pieces'
+require_relative 'chess/player_input'
 
 module Chess
   def self.start
