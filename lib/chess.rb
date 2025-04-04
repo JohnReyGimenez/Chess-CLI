@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-require_relative 'chess/board'
+require_relative 'chess/board/board'
+require_relative 'chess/board/board_renderer'
 require_relative 'chess/game'
 require_relative 'chess/game_logic'
 require_relative 'chess/chess_pieces'
