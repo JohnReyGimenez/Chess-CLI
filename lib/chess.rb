@@ -19,4 +19,9 @@ module Chess
       puts 'Invalid choice. Exiting.'
     end
   end
+
+  def self.start_new_game
+    game = Game.new
+    game.play_game
+  end
 end
