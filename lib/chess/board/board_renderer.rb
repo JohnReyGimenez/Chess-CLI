@@ -3,13 +3,13 @@
 require_relative 'board_general'
 
 module Chess
-  class BoardRenderer
+  class BoardRenderer # rubocop:disable Style/Documentation
     SQUARE = '[ ]'
     attr_reader :square_order, :board
 
     def initialize(board)
       @board = board
-      @square_order = square_order
+      @square_order = board.class::SQUARE_ORDER
     end
 
     def render
@@ -25,6 +25,8 @@ module Chess
     end
   end
 end
+
+board = Chess::Board.new
 
 renderer = Chess::BoardRenderer.new(board)
 
