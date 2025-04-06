@@ -21,7 +21,13 @@ module Chess
     end
 
     def square_content(square)
-      "[#{board[square.class.to_s[0]]}]"
+      if board[square].nil
+        '[ ]'
+      elsif board[square].is_a(knight)
+        "[#{board[square].class.to_s[2]}]"
+      else
+        "[#{board[square.class.to_s[0]]}]"
+      end
     end
   end
 end
