@@ -7,12 +7,22 @@ module Chess
   class Board # rubocop:disable Style/Documentation
     SQUARE_ORDER = 8
 
-    attr_reader :square_order, :board
+    attr_reader :grid
 
     def initialize
       # Initialize an 8x8 board with empty spaces
-      @board = Array.new(8) { Array.new(8, ' ') }
+      @grid = Array.new(SQUARE_ORDER) { Array.new(SQUARE_ORDER) }
       @square_order = SQUARE_ORDER
+    end
+
+    def [](square)
+      row, column = square
+      grid[row][column]
+    end
+
+    def []=(square, piece)
+      row, column = square
+      grid[row][column] = piece
     end
   end
 end
