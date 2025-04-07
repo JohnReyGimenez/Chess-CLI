@@ -5,6 +5,11 @@ require_relative 'board_general'
 module Chess
   class BoardRenderer # rubocop:disable Style/Documentation
     SQUARE = '[ ]'
+    FLOOR = '+--------+'
+    WALLS = '|        |'
+
+    SQUARE_ORDER = 8
+    SQUARE_HEIGHT = 3
     attr_reader :square_order, :board
 
     def initialize(board)
