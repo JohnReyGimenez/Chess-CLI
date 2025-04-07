@@ -5,8 +5,11 @@ require_relative 'board_general'
 module Chess
   class BoardRenderer # rubocop:disable Style/Documentation
     SQUARE = '[ ]'
-    FLOOR = '+--------+'
-    WALLS = '|        |'
+    FLOOR_0 = '+--------+'
+    FLOOR = '--------+'
+
+    WALLS_0 = '|        |'
+    WALLS = '        |'
 
     SQUARE_ORDER = 8
     SQUARE_HEIGHT = 3
