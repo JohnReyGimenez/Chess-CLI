@@ -19,9 +19,9 @@ module Chess
 
     def render
       square_order.times do |_row|
-        square_order.times do |column|
-          column != 7 ? print(SQUARE) : puts(SQUARE)
-        end
+        print_floor
+        SQUARE_HEIGHT.times { print_row }
+        print_floor
       end
     end
 
