@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'colorize'
 require_relative 'board_general'
 
 module Chess
@@ -8,8 +9,10 @@ module Chess
     FLOOR_0 = '+--------+'
     FLOOR = '--------+'
 
-    WALLS_0 = '|        |'
-    WALLS = '        |'
+    EMPTY_ROW_0 = '|        |'
+    EMPTY_ROW_0_WHITE = "|#{'        '.colorize(background: :white)}|"
+    EMPTY_ROW = '        |'
+    EMPTY_ROW_WHITE = "#{'        '.colorize(background: :white)}        |"
 
     SQUARE_ORDER = 8
     SQUARE_HEIGHT = 3
@@ -21,8 +24,9 @@ module Chess
     end
 
     def render
+      print_floor
+
       square_order.times do |_row|
-        print_floor
         SQUARE_HEIGHT.times { print_row }
         print_floor
       end
