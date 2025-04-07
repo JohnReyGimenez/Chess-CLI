@@ -34,6 +34,14 @@ module Chess
         "[#{board[square.class.to_s[0]]}]"
       end
     end
+
+    def print_floor
+      puts FLOOR_0 + FLOOR * (SQUARE_ORDER - 1)
+    end
+
+    def print_row
+      puts WALLS_0 + WALLS * (SQUARE_ORDER - 1)
+    end
   end
 end
 
