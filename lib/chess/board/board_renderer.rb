@@ -6,11 +6,14 @@ require_relative 'board_general'
 module Chess
   class BoardRenderer # rubocop:disable Style/Documentation
     SQUARE = '[ ]'
+    COLUMN_LETTERS = ('a'..'h').to_a.freeze
+
     FLOOR_0 = '+--------+'
     FLOOR = '--------+'
 
     EMPTY_ROW_0 = '|        |'
     EMPTY_ROW_0_WHITE = "|#{'        '.colorize(background: :white)}|"
+
     EMPTY_ROW = '        |'
     EMPTY_ROW_WHITE = "#{'        '.colorize(background: :white)}|"
 
@@ -48,6 +51,10 @@ module Chess
 
     def print_row
       puts WALLS_0 + WALLS * (SQUARE_ORDER - 1)
+    end
+
+    def print_column_letter
+      Chess::BoardRenderer::COLUMN_LETTERS.each { |letter| print "        #{letter}" }
     end
   end
 end
