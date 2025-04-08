@@ -47,11 +47,18 @@ module Chess
     end
 
     def print_floor
-      puts FLOOR_0 + FLOOR * (SQUARE_ORDER - 1)
+      puts LEFT_MARGIN + FLOOR_0 + FLOOR * (SQUARE_ORDER - 1)
     end
 
-    def print_row
-      puts WALLS_0 + WALLS * (SQUARE_ORDER - 1)
+    def print_row(row_number)
+      # reverses the row
+      puts row_number.even? ? row : row.reverse
+    end
+
+    def row
+      EMPTY_ROW_0_WHITE +
+        (EMPTY_ROW + EMPTY_ROW_WHITE) * 3 +
+        EMPTY_ROW
     end
 
     def print_column_letter
