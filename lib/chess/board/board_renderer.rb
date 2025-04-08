@@ -12,7 +12,7 @@ module Chess
     EMPTY_ROW_0 = '|        |'
     EMPTY_ROW_0_WHITE = "|#{'        '.colorize(background: :white)}|"
     EMPTY_ROW = '        |'
-    EMPTY_ROW_WHITE = "#{'        '.colorize(background: :white)}        |"
+    EMPTY_ROW_WHITE = "#{'        '.colorize(background: :white)}|"
 
     SQUARE_ORDER = 8
     SQUARE_HEIGHT = 3
