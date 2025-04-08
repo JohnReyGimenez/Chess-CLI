@@ -17,6 +17,7 @@ module Chess
     EMPTY_ROW = '        |'
     EMPTY_ROW_WHITE = "#{'        '.colorize(background: :white)}|"
 
+    LEFT_MARGIN = '' * 3
     SQUARE_ORDER = 8
     SQUARE_HEIGHT = 3
     attr_reader :square_order, :board
@@ -55,6 +56,11 @@ module Chess
 
     def print_column_letter
       Chess::BoardRenderer::COLUMN_LETTERS.each { |letter| print "        #{letter}" }
+      new_line(2)
+    end
+
+    def new_line(lines = 1)
+      lines.times { puts '' }
     end
   end
 end
