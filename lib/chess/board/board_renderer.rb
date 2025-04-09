@@ -28,12 +28,18 @@ module Chess
     end
 
     def render
-      print_floor
+      print_column_letters
 
-      square_order.times do |_row|
-        SQUARE_HEIGHT.times { print_row }
+      print_floor
+      square_order.times do |row_number|
+        print_row(row_number) # top
+        print_row(row_number) # middle
+        print_row(row_number) # botom
         print_floor
       end
+      new_line
+
+      print_column_letters
     end
 
     def square_content(square)
@@ -61,7 +67,7 @@ module Chess
         EMPTY_ROW
     end
 
-    def print_column_letter
+    def print_column_letters
       Chess::BoardRenderer::COLUMN_LETTERS.each { |letter| print "        #{letter}" }
       new_line(2)
     end
