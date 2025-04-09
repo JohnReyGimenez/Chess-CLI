@@ -5,6 +5,7 @@ require_relative 'board_general'
 
 module Chess
   class BoardRenderer # rubocop:disable Style/Documentation
+    ROW_NUMBERS = [*('1'..'8')].reverse
     SQUARE = '[ ]'
     COLUMN_LETTERS = ('a'..'h').to_a.freeze
 
@@ -33,6 +34,7 @@ module Chess
       print_floor
       square_order.times do |row_number|
         print_row(row_number) # top
+        print ROW_NUMBERS[row_number]
         print_row(row_number) # middle
         print_row(row_number) # botom
         print_floor
