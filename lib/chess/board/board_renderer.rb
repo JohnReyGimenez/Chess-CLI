@@ -18,7 +18,7 @@ module Chess
     EMPTY_ROW = '        |'
     EMPTY_ROW_WHITE = "#{'        '.colorize(background: :white)}|"
 
-    LEFT_MARGIN = '' * 4
+    LEFT_MARGIN = '    ' * 4
     SQUARE_ORDER = 8
     SQUARE_HEIGHT = 3
     attr_reader :square_order, :board
@@ -34,8 +34,8 @@ module Chess
       print_floor
       square_order.times do |row_number|
         print_row(row_number) # top
-        print ROW_NUMBERS[row_number]
-        print_row(row_number) # middle
+        print_middle_row(row_number)
+        puts ROW_NUMBERS[row_number]
         print_row(row_number) # botom
         print_floor
       end
@@ -45,9 +45,9 @@ module Chess
     end
 
     def square_content(square)
-      if board[square].nil
+      if board[square].nil?
         '[ ]'
-      elsif board[square].is_a(knight)
+      elsif board[square].is_a?(knight)
         "[#{board[square].class.to_s[2]}]"
       else
         "[#{board[square.class.to_s[0]]}]"
@@ -59,7 +59,7 @@ module Chess
     end
 
     def print_row(row_number)
-      puts number.even? ? white_starting_row : black_starting_row
+      puts row_number.even? ? white_starting_row : black_starting_row
     end
 
     def white_starting_row
@@ -81,8 +81,8 @@ module Chess
       new_line(2)
     end
 
-    def print_middle_row(row)
-      print number.even? ? white_starting_row[1..] : black_starting_row[1..]
+    def print_middle_row(row_number)
+      print row_number.even? ? white_starting_row[1..] : black_starting_row[1..]
     end
 
     def new_line(lines = 1)
