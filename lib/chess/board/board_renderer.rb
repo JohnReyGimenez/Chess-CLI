@@ -18,7 +18,7 @@ module Chess
     EMPTY_ROW = '        |'
     EMPTY_ROW_WHITE = "#{'        '.colorize(background: :white)}|"
 
-    LEFT_MARGIN = '' * 3
+    LEFT_MARGIN = '' * 4
     SQUARE_ORDER = 8
     SQUARE_HEIGHT = 3
     attr_reader :square_order, :board
@@ -66,7 +66,7 @@ module Chess
       LEFT_MARGIN +
         EMPTY_ROW_0_WHITE +
         (EMPTY_ROW + EMPTY_ROW_WHITE) * 3 +
-        EMPTY_ROW      
+        EMPTY_ROW
     end
 
     def black_starting_row
@@ -75,13 +75,14 @@ module Chess
         (EMPTY_ROW_WHITE + EMPTY_ROW) * 3 +
         EMPTY_ROW_WHITE
     end
+
     def print_column_letters
       Chess::BoardRenderer::COLUMN_LETTERS.each { |letter| print "        #{letter}" }
       new_line(2)
     end
 
     def print_middle_row(row)
-      print number.even? ? white
+      print number.even? ? white_starting_row[1..] : black_starting_row[1..]
     end
 
     def new_line(lines = 1)
