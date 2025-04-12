@@ -59,19 +59,29 @@ module Chess
     end
 
     def print_row(row_number)
-      # reverses the row
-      puts row_number.even? ? row : row.reverse
+      puts number.even? ? white_starting_row : black_starting_row
     end
 
-    def row
-      EMPTY_ROW_0_WHITE +
+    def white_starting_row
+      LEFT_MARGIN +
+        EMPTY_ROW_0_WHITE +
         (EMPTY_ROW + EMPTY_ROW_WHITE) * 3 +
-        EMPTY_ROW
+        EMPTY_ROW      
     end
 
+    def black_starting_row
+      LEFT_MARGIN +
+        EMPTY_ROW_0 +
+        (EMPTY_ROW_WHITE + EMPTY_ROW) * 3 +
+        EMPTY_ROW_WHITE
+    end
     def print_column_letters
       Chess::BoardRenderer::COLUMN_LETTERS.each { |letter| print "        #{letter}" }
       new_line(2)
+    end
+
+    def print_middle_row(row)
+      print number.even? ? white
     end
 
     def new_line(lines = 1)
