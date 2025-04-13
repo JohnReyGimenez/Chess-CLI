@@ -18,7 +18,8 @@ module Chess
     EMPTY_ROW = '        |'
     EMPTY_ROW_WHITE = "#{'        '.colorize(background: :white)}|"
 
-    LEFT_MARGIN = '    ' * 4
+    LEFT_MARGIN = ' ' * 4
+    RIGHT_MARGIN = ' ' * 3
     SQUARE_ORDER = 8
     SQUARE_HEIGHT = 3
     attr_reader :square_order, :board
@@ -29,13 +30,14 @@ module Chess
     end
 
     def render
+      new_line
       print_column_letters
-
       print_floor
+
       square_order.times do |row_number|
         print_row(row_number) # top
-        print_middle_row(row_number)
         puts ROW_NUMBERS[row_number]
+        print_middle_row(row_number)
         print_row(row_number) # botom
         print_floor
       end
