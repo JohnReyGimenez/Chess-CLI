@@ -27,12 +27,6 @@
 - Do most logics during breaks or free time
 - Visualize the structure of the project
 
-## GitHub Contribution Ideas
-
-- Commit placeholder methods
-- Write README and these notes
-- Organize file structure
-
 ## CURRENT PROJECT STRUCTURE....
 
 lib/
