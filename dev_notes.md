@@ -29,6 +29,7 @@
 
 ## CURRENT PROJECT STRUCTURE....
 
+```bash
 lib/
 └── chess/
     ├── board/
@@ -78,3 +79,5 @@ scripts/                      # (Optional) Debug or setup scripts (like seed.rb 
 
 ai/                           # (Optional) Add AI logic here for extra credit
 └── random_bot.rb             # A simple bot that picks a random legal move
+
+```
