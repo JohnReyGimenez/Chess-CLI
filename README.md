@@ -19,4 +19,4 @@ cd Chess
 
 ## Inspiration
 
-Heavily inspired by Lucas Sorribes' [Ruby Chess blog](https://lucassorribes.com/blog/building-a-chess-game-in-ruby-1/).
+Heavily inspired by Lucas Sorribes' [Ruby Chess blog](https://medium.com/@lucas.sorribes/nostromo-my-ruby-chess-journey-part-i-7ef544b547a5).
