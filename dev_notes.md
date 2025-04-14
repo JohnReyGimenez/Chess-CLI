@@ -12,6 +12,8 @@
 - [ ] Define basic `Piece` class with `color`, `symbol`, and placeholder `#moves`
 - [ ] Implement `Pawn` and `Knight` with move stubs
 - [ ] Integrate pieces into `Board`'s grid
+- [ ] Finalize how ill store piece objects (board[[x, y]] = Pawn.new(:white))
+- [ ] Implement a centralized PIECE_MAP for rendering & instantiation
 
 ## Rendering Plan
 
@@ -53,10 +55,10 @@ lib/
     ├── player_input.rb         # Gets and validates input from the player (e.g., "a2 to a3")
     │                           # Could later be split into HumanInput vs AIInput
     │
-dev_notes.md                   # Notes, ideas, thoughts during development (good for GitHub history)
+dev_notes.md                   # Notes, ideas, thoughts during development
 Gemfile                        # Gem dependencies like 'tty-prompt' or 'colorize'
-Gemfile.lock                   # Auto-generated lockfile
-LICENSE                        # License for your open source code
+Gemfile.lock              
+LICENSE                       
 main.rb                        # Entry point — runs Chess::Game.new.play
 README.md                      # Project overview, how to run, features, installation
 
