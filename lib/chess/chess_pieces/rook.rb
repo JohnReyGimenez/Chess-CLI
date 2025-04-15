@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 module Chess
-  module ChessPieces
-    class Rook
-    end
+  class Rook < Piece
   end
 end
