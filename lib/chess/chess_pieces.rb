@@ -11,5 +11,12 @@ require_relative 'chess_pieces/rook'
 
 module Chess
   class ChessPieces
+    attr_reader :color
+    attr_accessor :location
+
+    def initialize(location, color)
+      @location = location
+      @color = color
+    end
   end
 end
