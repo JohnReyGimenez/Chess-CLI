@@ -2,10 +2,9 @@
 
 # This module contains all the chess game logic, including pieces and rules.
 module Chess
-  class Bishop < Piece # rubocop:disable Style/Documentation
-    WHITE = ♗ # rubocop:disable Naming/AsciiIdentifiers
-    BLACK = ♝ # rubocop:disable Naming/AsciiIdentifiers
-    def bishop_move; end
+  class Bishop < Chess::Piece # rubocop:disable Style/Documentation
+    WHITE = '♗'
+    BLACK = '♝'
 
     def to_s
       case color
