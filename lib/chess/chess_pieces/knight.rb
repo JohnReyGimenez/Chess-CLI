@@ -2,5 +2,7 @@
 
 module Chess
   class Knight < Piece
+    WHITE = ♘
+    BLACK = ♞
   end
 end

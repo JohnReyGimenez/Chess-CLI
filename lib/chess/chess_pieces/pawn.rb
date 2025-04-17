@@ -2,5 +2,7 @@
 
 module Chess
   class Pawn < Piece
+    WHITE = ♙
+    BLACK = ♟
   end
 end

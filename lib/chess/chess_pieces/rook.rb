@@ -2,5 +2,7 @@
 
 module Chess
   class Rook < Piece
+    WHITE = ♖
+    BLACK = ♜
   end
 end
