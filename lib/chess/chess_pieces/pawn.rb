@@ -5,12 +5,5 @@ module Chess
   class Pawn < Chess::Piece
     WHITE = '♙'
     BLACK = '♟'
-
-    def to_s
-      case color
-      when :white then self.class::WHITE
-      else self.class::BLACK
-      end
-    end
   end
 end
