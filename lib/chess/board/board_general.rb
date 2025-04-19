@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'colorize'
+require_relative '../chess_pieces'
+require_relative '../player_input'
 
 module Chess
   class Board # rubocop:disable Style/Documentation
@@ -35,8 +37,12 @@ module Chess
       grid[row][column] = piece
     end
 
+    def place_pieces(piece_class, row, col, color)
+      piece = piece_class.new([row, col], color)
+      @board[[row, col]] = piece
+    end
+
     def set_up_board
-      # format: [piece_class, row, col]
       INITIAL_SETUP.each do |color, pieces|
         pieces.each do |piece_class, row, column|
           place_pieces(piece_class, row, column, color)
