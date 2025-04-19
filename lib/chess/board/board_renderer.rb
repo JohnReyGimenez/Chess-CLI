@@ -29,16 +29,17 @@ module Chess
       @square_order = board.class::SQUARE_ORDER
     end
 
-    def render
+    def render # rubocop:disable Metrics/MethodLength
       new_line
       print_column_letters
       print_floor
 
       square_order.times do |row_number|
-        print_row(row_number) # top
-        puts ROW_NUMBERS[row_number]
+        print_row(row_number)
+        print ROW_NUMBERS[row_number]
         print_middle_row(row_number)
-        print_row(row_number) # botom
+        puts RIGHT_MARGIN + ROW_NUMBERS[row_number]
+        print_row(row_number)
         print_floor
       end
       new_line
@@ -46,7 +47,7 @@ module Chess
       print_column_letters
     end
 
-    def square_content(square)
+    def square_content(square) # rubocop:disable Metrics/AbcSize
       if board[square].nil?
         '[ ]'
       elsif board[square].is_a?(knight)

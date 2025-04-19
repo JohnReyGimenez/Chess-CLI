@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'colorize'
-require 'tty-table'
 
 module Chess
   class Board # rubocop:disable Style/Documentation
