@@ -2,13 +2,6 @@
 
 # lib/chess/chess_pieces.rb
 
-require_relative 'chess_pieces/bishop'
-require_relative 'chess_pieces/king'
-require_relative 'chess_pieces/knight'
-require_relative 'chess_pieces/pawn'
-require_relative 'chess_pieces/queen'
-require_relative 'chess_pieces/rook'
-
 module Chess
   # Class that stores movement logic and other piece variables
   class Piece
@@ -28,3 +21,10 @@ module Chess
     end
   end
 end
+
+require_relative 'chess_pieces/bishop'
+require_relative 'chess_pieces/king'
+require_relative 'chess_pieces/knight'
+require_relative 'chess_pieces/pawn'
+require_relative 'chess_pieces/queen'
+require_relative 'chess_pieces/rook'
