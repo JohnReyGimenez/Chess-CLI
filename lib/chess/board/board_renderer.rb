@@ -81,8 +81,15 @@ module Chess
       new_line(2)
     end
 
-    def print_piece_row(row_number)
-      print row_number.even? ? white_starting_row[1..] : black_starting_row[1..]
+    def print_piece_row(row)
+      SQUARE_ORDER.times do |column|
+        square = [row, column]
+
+        if white_square?(square) then print_white_square(square, column)
+        else
+          print_black_square(square, column)
+        end
+      end
     end
 
     def new_line(lines = 1)
@@ -97,17 +104,17 @@ module Chess
     end
 
     def print_white_square(square, column)
-      print(
-        if board[square].nil? && column.zero?
-          "   |    #{board[square]}    |"
-        elsif column.zero?
-          "   |   #{board[square]}    |"
-        elsif board[square].nil?
-          "    #{board[square]}    |"
-        else
-          "   #{board[square]}    |"
-        end
-      )
+      piece = board[square]
+      content = if piece.nil? && column.zero?
+                  "   |    #{piece}    |"
+                elsif column.zero?
+                  "   |   #{piece}    |"
+                elsif piece.nil?
+                  "    #{piece}    |"
+                else
+                  "   #{piece}    |"
+                end
+      print content.colorize(background: :white)
     end
 
     def print_black_square(square, column)
