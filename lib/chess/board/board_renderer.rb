@@ -95,6 +95,34 @@ module Chess
 
       row.even? && column.even? || row.odd? && column.odd?
     end
+
+    def print_white_square(square, column)
+      print(
+        if board[square].nil? && column.zero?
+          "   |    #{board[square]}    |"
+        elsif column.zero?
+          "   |   #{board[square]}    |"
+        elsif board[square].nil?
+          "    #{board[square]}    |"
+        else
+          "   #{board[square]}    |"
+        end
+      )
+    end
+
+    def print_black_square(square, column)
+      print(
+        if board[square].nil? && column.zero?
+          "   |  #{board[square]}      |"
+        elsif column.zero?
+          "   |   #{board[square]}    |"
+        elsif board[square].nil?
+          "   #{board[square]}     |"
+        else
+          "   #{board[square]}    |"
+        end
+      )
+    end
   end
 end
 
