@@ -39,7 +39,7 @@ module Chess
 
     def place_pieces(piece_class, row, col, color)
       piece = piece_class.new([row, col], color)
-      @board[[row, col]] = piece
+      self[[row, col]] = piece
     end
 
     def set_up_board
@@ -51,8 +51,8 @@ module Chess
 
       # places pawns
       8.times do |col|
-        place_piece(Pawn, 1, col, :black)
-        place_piece(Pawn, 6, col, :white)
+        place_pieces(Pawn, 1, col, :black)
+        place_pieces(Pawn, 6, col, :white)
       end
     end
   end

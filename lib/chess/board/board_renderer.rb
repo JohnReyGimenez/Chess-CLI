@@ -47,14 +47,11 @@ module Chess
       print_column_letters
     end
 
-    def square_content(square) # rubocop:disable Metrics/AbcSize
-      if board[square].nil?
-        '[ ]'
-      elsif board[square].is_a?(knight)
-        "[#{board[square].class.to_s[2]}]"
-      else
-        "[#{board[square.class.to_s[0]]}]"
-      end
+    def square_content(square)
+      piece = board[square]
+      return '   ' if piece.nil?
+
+      " #{piece} "
     end
 
     def print_floor
