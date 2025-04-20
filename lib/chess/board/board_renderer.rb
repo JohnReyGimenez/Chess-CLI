@@ -37,7 +37,7 @@ module Chess
       square_order.times do |row_number|
         print_row(row_number)
         print ROW_NUMBERS[row_number]
-        print_middle_row(row_number)
+        print_piece_row(row_number)
         puts RIGHT_MARGIN + ROW_NUMBERS[row_number]
         print_row(row_number)
         print_floor
@@ -81,12 +81,19 @@ module Chess
       new_line(2)
     end
 
-    def print_middle_row(row_number)
+    def print_piece_row(row_number)
       print row_number.even? ? white_starting_row[1..] : black_starting_row[1..]
     end
 
     def new_line(lines = 1)
       lines.times { puts '' }
+    end
+
+    def white_square?(square)
+      row = square.first
+      column = square.last
+
+      row.even? && column.even? || row.odd? && column.odd?
     end
   end
 end
