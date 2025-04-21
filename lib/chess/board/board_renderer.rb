@@ -4,7 +4,7 @@ require 'colorize'
 require_relative 'board_general'
 
 module Chess
-  class BoardRenderer # rubocop:disable Style/Documentation,Metrics/ClassLength
+  class BoardRenderer # rubocop:disable Style/Documentation
     ROW_NUMBERS = [*('1'..'8')].reverse
     SQUARE = '[ ]'
     COLUMN_LETTERS = ('a'..'h').to_a.freeze
@@ -104,18 +104,21 @@ module Chess
     end
 
     def print_white_square(square, column)
-      piece = board[square]
-
-      content = if piece.nil?
-                  '     '
-                else
-                  "  #{piece}  "
-                end
-
-      left_frame = column.zero? ? '   |' : ''
-      right_pipe = '|'
-
-      print left_frame + content.colorize(background: :white) + right_pipe
+      if board[square].nil? && column.zero?
+        print '   |'
+        print "    #{board[square]}    ".colorize(background: :white)
+        print '|'
+      elsif column.zero?
+        print '   |'
+        print "   #{board[square]}    ".colorize(background: :white)
+        print '|'
+      elsif board[square].nil?
+        print "    #{board[square]}    ".colorize(background: :white)
+        print '|'
+      else
+        print "   #{board[square]}    ".colorize(background: :white)
+        print '|'
+      end
     end
 
     def print_black_square(square, column) # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
