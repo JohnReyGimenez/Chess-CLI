@@ -4,6 +4,6 @@
 module Chess
   class Queen < Chess::Piece
     WHITE = '♕'
-    BLACK = '♛'
+    BLACK = '♛'.colorize(color: :black)
   end
 end
