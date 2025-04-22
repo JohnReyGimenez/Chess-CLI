@@ -19,7 +19,7 @@ module Chess
       ]
     }.freeze
 
-    attr_reader :grid
+    attr_reader :grid, :square_order
 
     def initialize
       # Initialize an 8x8 board with empty spaces
