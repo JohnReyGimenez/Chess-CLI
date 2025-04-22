@@ -13,11 +13,11 @@ module Chess
     FLOOR_0 = '+--------+'
     FLOOR = '--------+'
 
-    EMPTY_ROW_0 = "|#{'        '.colorize(background: :green)}|"
-    EMPTY_ROW_0_WHITE = "|#{'        '.colorize(background: :white)}|"
+    EMPTY_ROW_0 = "│#{'        '.colorize(background: :green)}│"
+    EMPTY_ROW_0_WHITE = "│#{'        '.colorize(background: :white)}│"
 
-    EMPTY_ROW = "#{'        '.colorize(background: :green)}|"
-    EMPTY_ROW_WHITE = "#{'        '.colorize(background: :white)}|"
+    EMPTY_ROW = "#{'        '.colorize(background: :green)}│"
+    EMPTY_ROW_WHITE = "#{'        '.colorize(background: :white)}│"
 
     LEFT_MARGIN = ' ' * 4
     RIGHT_MARGIN = ' ' * 3
@@ -107,37 +107,37 @@ module Chess
 
     def print_white_square(square, column)
       if board[square].nil? && column.zero?
-        print '   |'
+        print '   │'
         print "    #{board[square]}    ".colorize(background: :white)
-        print '|'
+        print '│'
       elsif column.zero?
-        print '   |'
+        print '   │'
         print "   #{board[square]}    ".colorize(background: :white)
-        print '|'
+        print '│'
       elsif board[square].nil?
         print "    #{board[square]}    ".colorize(background: :white)
-        print '|'
+        print '│'
       else
         print "   #{board[square]}    ".colorize(background: :white)
-        print '|'
+        print '│'
       end
     end
 
     def print_black_square(square, column) # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
       if board[square].nil? && column.zero?
-        print '   |'
+        print '   │'
         print "  #{board[square]}      ".colorize(background: :green)
-        print '|'
+        print '│'
       elsif column.zero?
-        print '   |'
+        print '   │'
         print "   #{board[square]}    ".colorize(background: :green)
-        print '|'
+        print '│'
       elsif board[square].nil?
         print "   #{board[square]}     ".colorize(background: :green)
-        print '|'
+        print '│'
       else
         print "   #{board[square]}    ".colorize(background: :green)
-        print '|'
+        print '│'
       end
     end
   end
