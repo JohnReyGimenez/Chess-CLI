@@ -3,7 +3,7 @@
 # This module contains all the chess game logic, including pieces and rules.
 module Chess
   class Pawn < Chess::Piece
-    WHITE = '♙'
+    WHITE = '♟'.colorize(color: :blue)
     BLACK = '♟'.colorize(color: :black)
   end
 end
