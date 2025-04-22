@@ -13,10 +13,10 @@ module Chess
     FLOOR_0 = '+--------+'
     FLOOR = '--------+'
 
-    EMPTY_ROW_0 = "|#{'        '.colorize(background: :green)}        |"
+    EMPTY_ROW_0 = "|#{'        '.colorize(background: :green)}|"
     EMPTY_ROW_0_WHITE = "|#{'        '.colorize(background: :white)}|"
 
-    EMPTY_ROW = "#{'        '.colorize(background: :green)}        |"
+    EMPTY_ROW = "#{'        '.colorize(background: :green)}|"
     EMPTY_ROW_WHITE = "#{'        '.colorize(background: :white)}|"
 
     LEFT_MARGIN = ' ' * 4
