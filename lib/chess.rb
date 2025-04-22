@@ -5,8 +5,8 @@ require_relative 'chess/game'
 require_relative 'chess/chess_pieces'
 require_relative 'chess/player_input'
 
-module Chess
-  def self.start
+module Chess # rubocop:disable Style/Documentation
+  def self.start # rubocop:disable Metrics/MethodLength
     puts 'Welcome to Chess'
     puts '1. Start new game'
     puts '2. Load game'
