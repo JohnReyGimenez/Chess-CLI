@@ -10,8 +10,8 @@ module Chess
     SQUARE = '[ ]'
     COLUMN_LETTERS = ('a'..'h').to_a.freeze
 
-    FLOOR_0 = '+--------+'
-    FLOOR = '--------+'
+    FLOOR_0 = '+────────+'
+    FLOOR = '────────+'
 
     EMPTY_ROW_0 = "│#{'        '.colorize(background: :green)}│"
     EMPTY_ROW_0_WHITE = "│#{'        '.colorize(background: :white)}│"
