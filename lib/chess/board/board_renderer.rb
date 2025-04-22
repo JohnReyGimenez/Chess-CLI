@@ -5,6 +5,7 @@ require_relative 'board_general'
 
 module Chess
   class BoardRenderer # rubocop:disable Style/Documentation
+    # below are layout formatting constants
     ROW_NUMBERS = [*('1'..'8')].reverse
     SQUARE = '[ ]'
     COLUMN_LETTERS = ('a'..'h').to_a.freeze
@@ -12,16 +13,17 @@ module Chess
     FLOOR_0 = '+--------+'
     FLOOR = '--------+'
 
-    EMPTY_ROW_0 = '|        |'
+    EMPTY_ROW_0 = "|#{'        '.colorize(background: :green)}        |"
     EMPTY_ROW_0_WHITE = "|#{'        '.colorize(background: :white)}|"
 
-    EMPTY_ROW = '        |'
+    EMPTY_ROW = "#{'        '.colorize(background: :green)}        |"
     EMPTY_ROW_WHITE = "#{'        '.colorize(background: :white)}|"
 
     LEFT_MARGIN = ' ' * 4
     RIGHT_MARGIN = ' ' * 3
     SQUARE_ORDER = 8
     SQUARE_HEIGHT = 3
+
     attr_reader :square_order, :board
 
     def initialize(board)
@@ -122,23 +124,21 @@ module Chess
     end
 
     def print_black_square(square, column) # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
-      print(
-        if board[square].nil? && column.zero?
-          "   |  #{board[square]}      |"
-        elsif column.zero?
-          "   |   #{board[square]}    |"
-        elsif board[square].nil?
-          "   #{board[square]}     |"
-        else
-          "   #{board[square]}    |"
-        end
-      )
+      if board[square].nil? && column.zero?
+        print '   |'
+        print "  #{board[square]}      ".colorize(background: :green)
+        print '|'
+      elsif column.zero?
+        print '   |'
+        print "   #{board[square]}    ".colorize(background: :green)
+        print '|'
+      elsif board[square].nil?
+        print "   #{board[square]}     ".colorize(background: :green)
+        print '|'
+      else
+        print "   #{board[square]}    ".colorize(background: :green)
+        print '|'
+      end
     end
   end
 end
-
-board = Chess::Board.new
-
-renderer = Chess::BoardRenderer.new(board)
-
-renderer.render
