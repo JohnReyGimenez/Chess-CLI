@@ -19,4 +19,4 @@ cd Chess-CLI
 
 ## Inspiration
 
-Heavily inspired by Lucas Sorribes' [Ruby Chess blog](https://medium.com/@lucas.sorribes/nostromo-my-ruby-chess-journey-part-i-7ef544b547a5).
+Board rendering logic heavily inspired by Lucas Sorribes' [Ruby Chess blog](https://medium.com/@lucas.sorribes/nostromo-my-ruby-chess-journey-part-i-7ef544b547a5).
