@@ -24,4 +24,4 @@ Board rendering logic heavily inspired by Lucas Sorribes' [Ruby Chess blog](http
 ## Preview
 
 ### Static board
-![Chess Board Screenshot](.media/board.png)
+![Chess Board Screenshot](media/board.png)
