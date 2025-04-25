@@ -6,11 +6,12 @@ module Chess
   # Class that stores movement logic and other piece variables
   class Piece
     attr_reader :color
-    attr_accessor :location
+    attr_accessor :locationz, :has_moved
 
     def initialize(location, color)
       @location = location
       @color = color
+      @has_moved = false
     end
 
     def to_s
