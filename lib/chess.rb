@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+require 'colorize'
+Dir[File.join(__dir__, 'pieces', '*.rb')].sort.each { |file| require file }
+require_relative 'chess_pieces'
+
 require_relative 'chess/board'
 require_relative 'chess/game'
 require_relative 'chess/chess_pieces'
