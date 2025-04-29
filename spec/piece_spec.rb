@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require './spec/spec_helper'
 require 'colorize'
-require_relative '../lib/chess/chess'
+require_relative '../lib/chess'
 
 RSpec.describe Chess::Piece do
   describe '#initialize' do
