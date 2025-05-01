@@ -8,7 +8,7 @@ module Chess
     DIRECTION = color == :white ? -1 : 1
   end
 
-  def valid_move(board)
+  def valid_moves(board)
     valid_moves = []
     # sub
   end

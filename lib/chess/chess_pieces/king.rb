@@ -11,3 +11,7 @@ module Chess
     # sub
   end
 end
+
+# moves on all directions but only one square at a time
+#  [row+1, col+1] or [row -1, col-1] for diagonal
+#  [row+1, col] or [row, col-1] or vise versa

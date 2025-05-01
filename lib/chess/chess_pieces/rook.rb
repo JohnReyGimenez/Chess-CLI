@@ -11,3 +11,5 @@ module Chess
     # sub
   end
 end
+
+# moves only left and right and up or down

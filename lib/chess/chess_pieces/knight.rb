@@ -11,3 +11,5 @@ module Chess
     # sub
   end
 end
+
+# moves in L shape
