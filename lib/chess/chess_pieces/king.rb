@@ -6,4 +6,8 @@ module Chess
     WHITE = '♚'.colorize(color: :blue)
     BLACK = '♚'.colorize(color: :black)
   end
+
+  def valid_move
+    # sub
+  end
 end
