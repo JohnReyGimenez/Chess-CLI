@@ -14,6 +14,7 @@ module Chess
   end
 
   def forward_moves(board)
-    next_row = 
+    next_row = current_row + DIRECTION
+    valid_moves << [next_row, current_col] if board[[next_row, current_col]].nil
   end
 end
