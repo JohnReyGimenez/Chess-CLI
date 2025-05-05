@@ -37,6 +37,11 @@ module Chess
       grid[row][column] = piece
     end
 
+    def in_bounds?(pos)
+      row, col = pos
+      row.between?(0, 7) && col.between?(0, 7)
+    end
+
     def place_pieces(piece_class, row, col, color)
       piece = piece_class.new([row, col], color)
       self[[row, col]] = piece
