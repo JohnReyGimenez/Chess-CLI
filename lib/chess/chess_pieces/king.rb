@@ -16,6 +16,17 @@ module Chess
     ]
 
     moves = []
+
+    directions.each do |dr, dc|
+      new_row = row + dr
+      new_col = col + dc
+      next unless board.in_bounds?([new_row, new_col])
+
+      target = board[new_row][new_col]
+      moves << [new_row, new_col] if target.nil? || target.color != color
+    end
+
+    moves
   end
 end
 
