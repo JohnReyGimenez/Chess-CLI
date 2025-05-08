@@ -8,7 +8,14 @@ module Chess
   end
 
   def valid_move
-    # sub
+    row, col = @location
+    directions = [
+      [-1, -1], [-1, 0], [-1, 1],
+      [0, -1], [0, 1], [1, -1],
+      [1, 0], [1, 1]
+    ]
+
+    moves = []
   end
 end
 
