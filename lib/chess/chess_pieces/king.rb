@@ -7,7 +7,7 @@ module Chess
     BLACK = '♚'.colorize(color: :black)
   end
 
-  def valid_move
+  def legal_moves
     row, col = @location
     directions = [
       [-1, -1], [-1, 0], [-1, 1],

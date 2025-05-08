@@ -7,7 +7,7 @@ module Chess
     BLACK = '♜'.colorize(color: :black)
   end
 
-  def valid_move
+  def legal_moves
     # sub
   end
 end

@@ -13,15 +13,15 @@ RSpec.describe Chess::Bishop do
     end
   end
 
-  describe '#valid_moves' do
-    it 'returns the valid and capture moves from current position' do
+  describe '#legal_moves' do
+    it 'returns the legal and capture moves from current position' do
       board = double('board')
       allow(board).to receive(:in_bounds?).and_return(true)
       allow(board).to receive(:[]).and_return(nil) # simulate empty squares
 
       piece = Chess::Bishop.new([0, 2], :white)
-      expect(piece.valid_moves(board)).to include([1, 3], [2, 4], [1, 1], [2, 0])
-      puts piece.valid_moves(board).inspect
+      expect(piece.legal_moves(board)).to include([1, 3], [2, 4], [1, 1], [2, 0])
+      puts piece.legal_moves(board).inspect
     end
   end
 end
