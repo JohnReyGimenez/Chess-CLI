@@ -6,7 +6,7 @@ module Chess
     WHITE = '♟'.colorize(color: :blue)
     BLACK = '♟'.colorize(color: :black)
 
-    def legal_moves(board)
+    def valid_moves(board)
       row, col = @location
       direction = color == :white ? -1 : 1 # direction
       moves = []
