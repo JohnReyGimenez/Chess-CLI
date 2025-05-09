@@ -13,7 +13,7 @@ RSpec.describe Chess::King do
     end
   end
 
-  describe '#valid_moves' do
+  describe '#legal_moves' do
     it 'returns only legal 1-step moves for the king' do
       board = double('board')
       allow(board).to receive(:in_bounds?).and_return(true)
