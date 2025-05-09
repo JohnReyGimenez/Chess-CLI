@@ -13,7 +13,7 @@ RSpec.describe Chess::Pawn do
     end
   end
 
-  describe '#legal_moves' do
+  describe '#valid_moves' do
     it 'returns the valid forward and capture moves from current position' do
       board = double('board')
       allow(board).to receive(:in_bounds?).and_return(true)
