@@ -8,7 +8,37 @@ module Chess
   end
 
   def valid_moves(board)
-    # sub
+    directions = [
+      [-1, 0], # up
+      [1, 0],  # down
+      [0, -1], # left
+      [0, 1]   # right
+    ]
+
+    moves = []
+    row, col = location
+
+    directions.each do |dr, dc|
+      r = row + dr
+      c = col + dc
+      while board.in_bounds?([r, c])
+        target = board[[r, c]]
+
+        if target.nil?
+          moves << [r, c]
+        elsif target.color != color
+          moves << [r, c]
+          break
+        else
+          break
+        end
+
+        r += dr
+        c += dc
+      end
+    end
+
+    moves
   end
 end
 
