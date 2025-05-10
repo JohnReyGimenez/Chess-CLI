@@ -29,4 +29,17 @@ module Chess # rubocop:disable Style/Documentation
     game = Game.new
     game.play_game
   end
+
+  def self.load_saved_game
+    save_load = SaveLoad.new
+    game = save_load.load_game
+
+    if game
+      pus 'Game Loaded.'
+      game.play_game
+    else
+      puts 'No saved file found, starting new game instead.'
+      start_new_game
+    end
+  end
 end
