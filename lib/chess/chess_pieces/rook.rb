@@ -24,14 +24,10 @@ module Chess
       while board.in_bounds?([r, c])
         target = board[[r, c]]
 
-        if target.nil?
-          moves << [r, c]
-        elsif target.color != color
-          moves << [r, c]
-          break
-        else
-          break
-        end
+        # vreak loop unless target position is empty or has enemy piece
+        break unless target.nil? || target.color != colorize
+
+        moves << [r, c]
 
         r += dr
         c += dc
