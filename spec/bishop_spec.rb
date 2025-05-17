@@ -27,7 +27,7 @@ RSpec.describe Chess::Bishop do
           [4, 4], [5, 5], [6, 6], [7, 7] # down-right
         ]
 
-        expect(bishop.legal_moves(board)).to match_array(expected_moves)
+        expect(bishop.valid_moves(board)).to match_array(expected_moves)
       end
     end
   end

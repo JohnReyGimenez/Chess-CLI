@@ -20,7 +20,7 @@ RSpec.describe Chess::Pawn do
       allow(board).to receive(:[]).and_return(nil) # simulate empty squares
 
       piece = Chess::Pawn.new([1, 0], :white)
-      expect(piece.legal_moves(board)).to include([2, 0], [3, 0])
+      expect(piece.valid_moves(board)).to include([2, 0], [3, 0])
     end
   end
 end
