@@ -22,8 +22,11 @@ module Chess
 
       # checks for new position
       target = board[new_pos[0]][new_pos[1]]
-      # Either empty or enemy piec
+      # Either empty or enemy piece
+      moves << new_pos if target.nil? || target.color != color
     end
+
+    moves
   end
 end
 
