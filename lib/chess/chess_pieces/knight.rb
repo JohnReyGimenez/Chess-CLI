@@ -8,7 +8,22 @@ module Chess
   end
 
   def valid_moves(board)
-    # sub
+    row, col = @location
+    move_offsets = [
+      [-2, -1], [-2, 1], [-1, -2], [-1, 2],
+      [1, -2], [1, 2], [2, -1], [2, 1]
+    ]
+
+    moves = []
+
+    move_offsets.each do |dr, dc|
+      new_pos = [row + dr, col + dc]
+      next unless board.in_bounds?(new_pos)
+
+      # checks for new position
+      target = board[new_pos[0]][new_pos[1]]
+      # Either empty or enemy piec
+    end
   end
 end
 
