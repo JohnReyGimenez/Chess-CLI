@@ -28,5 +28,24 @@ RSpec.describe Chess::King do
 
       expect(knight.valid_moves(board)).to match_array(expected_moves)
     end
+
+    it 'returns only valid moves that are in bounds and not blocked by allies' do
+      board = double('board')
+      allow(board).to receive(:in_bounds?) { |pos| pos.all? { |i| i.between?(0, 7) } }
+
+      # simulate a board with one friendly and one enemy piece
+      allow(board).to receive(:[]).with(2, 3).and_return(double('Piece', color: :white)) # friendly
+      allow(board).to receive(:[]).with(2, 5).and_return(double('Piece', color: :black)) # enemy
+      allow(board).to receive(:[]).and_return(nil) # all other positions are empty
+
+      knight = Chess::Knight.new([4, 4], :white)
+
+      expected_moves = [
+        [2, 5], [3, 2], [3, 6],
+        [5, 2], [5, 6], [6, 3], [6, 5]
+      ]
+
+      expect(knight.valid_moves(board)).to match_array(expected_moves)
+    end
   end
 end
