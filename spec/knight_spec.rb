@@ -14,14 +14,19 @@ RSpec.describe Chess::King do
   end
 
   describe '#valid_moves' do
-    it 'returns the legal and capture moves from current position' do
+    it 'returns all valid L-shaped moves for a central knight on empty board' do
       board = double('board')
-      allow(board).to receive(:in_bounds?).and_return(true)
-      allow(board).to receive(:[]).and_return(nil) # simulate empty squares
+      allow(board).to receive(:in_bounds?) { |pos| pos.all? { |i| i.between?(0, 7) } }
+      allow(board).to receive(:[]).and_return(nil)
 
-      piece = Chess::Bishop.new([0, 2], :white)
-      expect(piece.valid_moves(board)).to include([1, 3], [2, 4], [1, 1], [2, 0])
-      puts piece.valid_moves(board).inspect
+      knight = Chess::Knight.new([4, 4], :white)
+
+      expected_moves = [
+        [2, 3], [2, 5], [3, 2], [3, 6],
+        [5, 2], [5, 6], [6, 3], [6, 5]
+      ]
+
+      expect(knight.valid_moves(board)).to match_array(expected_moves)
     end
   end
 end
