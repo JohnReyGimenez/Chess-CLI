@@ -10,5 +10,10 @@ module Chess
     end
 
     def play_game; end
+
+    def ask_for_move
+      puts "\nEnter your move (e.g. 'e2e4', 'castle k', or 'exit')"
+      Chess::PlayerInput.get_move
+    end
   end
 end
