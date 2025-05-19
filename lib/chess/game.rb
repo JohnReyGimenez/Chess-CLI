@@ -15,5 +15,10 @@ module Chess
       puts "\nEnter your move (e.g. 'e2e4', 'castle k', or 'exit')"
       Chess::PlayerInput.get_move
     end
+
+    def castle(color, side)
+      # later: Add logic for king and rook movement, safety checks, etc.
+      puts "#{color.capitalize} castled #{side == 'k' ? 'kingside' : 'queenside'}."
+    end
   end
 end
