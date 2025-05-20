@@ -71,5 +71,16 @@ module Chess
       row = 8 - pos[1].to_i
       [row, col]
     end
+
+    def move_piece_to(from, to)
+      piece = piece_at(from)
+      captured = piece_at(to)
+
+      @grid[to[0]][to[1]] = piece
+      @grid[from[0]][from[1]] = nil
+
+      piece.position = to
+      capture_piece(piece.color, captured) if captured
+    end
   end
 end

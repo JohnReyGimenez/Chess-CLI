@@ -7,6 +7,7 @@ module Chess
       @board.set_up_board
       @renderer = BoardRenderer.new(@board)
       @current_player_color = :white
+      @captured = { white: [], black: [] }
     end
 
     def play_game; end
