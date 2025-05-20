@@ -61,6 +61,11 @@ module Chess
       end
     end
 
+    def piece_at(pos)
+      row, col = pos
+      @grid[row][col]
+    end
+
     def parse_position(pos)
       col = pos[0].ord - 'a'.ord
       row = 8 - pos[1].to_i
