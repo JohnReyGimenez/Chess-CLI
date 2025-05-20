@@ -60,5 +60,11 @@ module Chess
         place_pieces(Pawn, 6, col, :white)
       end
     end
+
+    def parse_position(pos)
+      col = pos[0].ord - 'a'.ord
+      row = 8 - pos[1].to_i
+      [row, col]
+    end
   end
 end

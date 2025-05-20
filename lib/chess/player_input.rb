@@ -17,5 +17,9 @@ module Chess
         puts "Invalid input format. Try 'e2e4' or 'castle k'."
       end
     end
+
+    def self.valid_move_input?(input)
+      input.match?(/^[a-h][1-8][a-h][1-8]$/) || input.match?(/^castle [kq]$/) || input == 'exit'
+    end
   end
 end
