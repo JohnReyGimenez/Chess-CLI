@@ -36,5 +36,11 @@ module Chess
       # If it captured an opponent piece, register it
       capture_piece(piece.color, captured) if captured
     end
+
+    def capture_piece(color, captured_piece)
+      opponent = color == :white ? :black : :white
+      @captured[color] ||= [] # Init array if needed
+      @captured[color] << captured_piece if captured_piece.color == opponent
+    end
   end
 end
