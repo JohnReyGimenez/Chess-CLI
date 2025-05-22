@@ -61,6 +61,10 @@ module Chess
       end
     end
 
+    def position_to_notation(row, col)
+      "#{('a'.ord + col).chr}#{8 - row}"
+    end
+
     def piece_at(pos)
       row, col = pos
       @grid[row][col]
@@ -70,17 +74,6 @@ module Chess
       col = pos[0].ord - 'a'.ord
       row = 8 - pos[1].to_i
       [row, col]
-    end
-
-    def move_piece_to(from, to)
-      piece = piece_at(from)
-      captured = piece_at(to)
-
-      @grid[to[0]][to[1]] = piece
-      @grid[from[0]][from[1]] = nil
-
-      piece.position = to
-      capture_piece(piece.color, captured) if captured
     end
   end
 end
