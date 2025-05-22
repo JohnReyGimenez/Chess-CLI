@@ -11,7 +11,19 @@ module Chess
       @captured = { white: [], black: [] }
     end
 
-    def play_game; end
+    def play_game
+      loop do
+        start_new_game
+
+        puts 'Do you want to play again? (yes/no)'
+        play_again = gets.chomp.downcase
+        until %w[yes no].include?(play_again)
+          puts 'Invalid input. Please type "yes" or "no".'
+          play_again = gets.chomp.downcase
+        end
+        break if play_again == 'no'
+      end
+    end
 
     def display_turn_info(turn_number, current_player)
       color_code = current_player == :white ? 47 : 100
