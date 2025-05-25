@@ -88,5 +88,33 @@ module Chess
 
       valid_positions.include?(from) && valid_positions.include?(to)
     end
+
+    def in_check?(color)
+      king_pos = nil
+
+      # find the king of the given color
+      grid.each do |row|
+        row.each do |piece|
+          next unless piece.is_a?(King) && piece.color == color
+
+          king_pos = piece.position
+          break
+        end
+      end
+
+      return false unless king_pos # in case king was not found
+
+      # check every opponent piece to see if it can attack the king
+      grid.each do |row|
+        row.each do |piece|
+          next if piece.nil? || piece.color == color
+
+          moves = piece.valid_moves(self)
+          return true if moves.include?(king_pos)
+        end
+      end
+
+      false
+    end
   end
 end
