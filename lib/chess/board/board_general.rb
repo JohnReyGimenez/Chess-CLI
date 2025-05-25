@@ -124,5 +124,25 @@ module Chess
     def board_dup
       Marshal.load(Marshal.dump(self))
     end
+
+    def checkmate?(color)
+      return false unless in_check?(color)
+
+      board.pieces_for(color).each do |piece|
+        piece.valid_moves(board).each do |move|
+          # clone board to test the move
+          test_board = board.board_dup
+
+          # simulate move on the test board
+          test_piece = test_board[piece.location]
+          test_board.move_piece(test_piece.location, move)
+
+          # if move gets the king out of check then not checkmate
+          return false unless test_board.in_check?(color)
+        end
+      end
+
+      true
+    end
   end
 end
