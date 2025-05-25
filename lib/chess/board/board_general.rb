@@ -120,5 +120,9 @@ module Chess
     def pieces_for(color)
       @grid.flatten.compact.select { |p| p.color == color }
     end
+
+    def board_dup
+      Marshal.load(Marshal.dump(self))
+    end
   end
 end
