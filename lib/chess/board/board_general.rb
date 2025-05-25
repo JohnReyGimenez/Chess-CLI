@@ -29,12 +29,12 @@ module Chess
 
     def [](square)
       row, column = square
-      grid[row][column]
+      @grid[row][column]
     end
 
     def []=(square, piece)
       row, column = square
-      grid[row][column] = piece
+      @grid[row][column] = piece
     end
 
     def in_bounds?(pos)
@@ -93,11 +93,11 @@ module Chess
       king_pos = nil
 
       # find the king of the given color
-      grid.each do |row|
+      @grid.each do |row|
         row.each do |piece|
           next unless piece.is_a?(King) && piece.color == color
 
-          king_pos = piece.position
+          king_pos = piece.location
           break
         end
       end
@@ -105,7 +105,7 @@ module Chess
       return false unless king_pos # in case king was not found
 
       # check every opponent piece to see if it can attack the king
-      grid.each do |row|
+      @grid.each do |row|
         row.each do |piece|
           next if piece.nil? || piece.color == color
 
@@ -115,6 +115,10 @@ module Chess
       end
 
       false
+    end
+
+    def pieces_for(color)
+      @grid.flatten.compact.select { |p| p.color == color }
     end
   end
 end
