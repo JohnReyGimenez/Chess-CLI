@@ -13,11 +13,11 @@ module Chess
 
       # 1-step
       one_step = [row + direction, col]
-      moves << one_step if board[one_step[0]][one_step[1]].nil?
+      moves << one_step if board.in_bounds?(one_step) && board[one_step[0]][one_step[1]].nil?
 
       # 2-step
       two_step = [row + 2 * direction, col]
-      moves << two_step if !@has_moved && board[one_step[0]][one_step[1]].nil? && board[two_step[0]][two_step[1]].nil?
+      moves << two_step if board.in_bounds?(one_step) && board[one_step[0]][one_step[1]].nil?
 
       # Diagonal captures
       [[row + direction, col - 1], [row + direction, col + 1]].each do |r, c|
