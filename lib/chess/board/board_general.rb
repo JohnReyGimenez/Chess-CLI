@@ -142,16 +142,31 @@ module Chess
     def checkmate?(color)
       return false unless in_check?(color)
 
-      board.pieces_for(color).each do |piece|
+      pieces_for(color).each do |piece|
         piece.valid_moves(self).each do |move|
           # clone board to test the move
-          test_board = board.board_dup
+          test_board = board_dup
 
           # simulate move on the test board
           test_piece = test_board[piece.location]
           test_board.move_piece(test_piece.location, move)
 
           # if move gets the king out of check then not checkmate
+          return false unless test_board.in_check?(color)
+        end
+      end
+
+      true
+    end
+
+    def stalemate?(color)
+      return false if in_check?(color)
+
+      pieces_for(color).each do |piece|
+        piece.valid_moves(self).each do |move|
+          test_board = board_dup
+          test_piece = test_board[piece.location]
+          test_board.move_piece_to(test_piece.location, move)
           return false unless test_board.in_check?(color)
         end
       end
