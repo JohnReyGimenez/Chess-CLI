@@ -6,6 +6,7 @@ require_relative '../player_input'
 
 module Chess
   class Board # rubocop:disable Style/Documentation
+    # Handles grid, move_piece_to, reset_board, etc.
     SQUARE_ORDER = 8
     # format: [piece_class, row, col]
     INITIAL_SETUP = {
