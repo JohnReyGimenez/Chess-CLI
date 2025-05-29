@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 module Chess
-  class Game # rubocop:disable Style/Documentation
+  # game loop, turn tracking
+  class Game
     def initialize
       @board = Board.new
       @board.set_up_board
