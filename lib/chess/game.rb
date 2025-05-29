@@ -13,16 +13,43 @@ module Chess
     end
 
     def play_game
+      turn = 1
       loop do
-        start_new_game
+        system('clear')                    # clears terminal
+        @renderer.render                   # renders the current board state
+        display_turn_info(turn, @current_player_color)
 
-        puts 'Do you want to play again? (yes/no)'
-        play_again = gets.chomp.downcase
-        until %w[yes no].include?(play_again)
-          puts 'Invalid input. Please type "yes" or "no".'
-          play_again = gets.chomp.downcase
+        # checks for game end conditions
+        if @board.checkmate?(@current_player_color)
+          puts "#{@current_player_color.capitalize} is checkmated! Game over."
+          break
+        elsif @board.stalemate?(@current_player_color)
+          puts "Stalemate! It's a draw."
+          break
         end
-        break if play_again == 'no'
+
+        # prompts and parses player move
+        move_input = ask_for_move
+        break if move_input == 'exit'
+
+        # handles castling separately
+        if move_input.start_with?('castle')
+          handle_castling(move_input)
+          turn += 1
+          switch_players
+          next
+        end
+
+        # parse and validate
+        from, to = parse_move(move_input)
+        if from && to && valid_move?(from, to)
+          @board.move_piece_to(from, to)
+          check_promotion(to)
+          turn += 1
+          switch_players
+        else
+          puts 'Invalid move. Try again.'
+        end
       end
     end
 
@@ -32,9 +59,9 @@ module Chess
 
       puts "\n\e[1;#{color_code}m Turn #{turn_number} \e[0m  \e[1;#{text_color}m#{current_player.capitalize}'s move\e[0m"
       puts '-' * 45
-      puts "↪︎ Move using notation: e.g. 'e2e4'"
-      puts "↪︎ Castle with: 'castle k' or 'castle q'"
-      puts "↪︎ Type 'exit' to quit."
+      puts "> Move using notation: e.g. 'e2e4'"
+      puts "> Castle with: 'castle k' or 'castle q'"
+      puts "> Type 'exit' to quit."
       puts
     end
 
