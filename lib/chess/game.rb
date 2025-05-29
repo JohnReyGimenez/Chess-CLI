@@ -84,5 +84,22 @@ module Chess
     def switch_players
       @current_player_color = @current_player_color == :white ? :black : :white
     end
+
+    def check_promotion(to)
+      piece = @board.piece_at(to)
+      return unless piece.is_a?(Pawn)
+      return unless (piece.color == :white && to[0] == 0) || (piece.color == :black && to[0] == 7)
+
+      puts 'Promote pawn to (Q, R, B, N):'
+      choice = gets.chomp.upcase
+      new_piece = case choice
+                  when 'Q' then Queen.new(piece.color, to)
+                  when 'R' then Rook.new(piece.color, to)
+                  when 'B' then Bishop.new(piece.color, to)
+                  when 'N' then Knight.new(piece.color, to)
+                  else Queen.new(piece.color, to)
+                  end
+      @board.place_piece(to, new_piece)
+    end
   end
 end
