@@ -85,6 +85,13 @@ module Chess
       @current_player_color = @current_player_color == :white ? :black : :white
     end
 
+    def parse_move(input)
+      parts = input.strip.downcase.split
+      return nil unless parts.size == 2
+
+      [parse_position(parts[0]), parse_position(parts[1])]
+    end
+
     def check_promotion(to)
       piece = @board.piece_at(to)
       return unless piece.is_a?(Pawn)
