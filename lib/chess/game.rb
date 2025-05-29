@@ -101,5 +101,15 @@ module Chess
                   end
       @board.place_piece(to, new_piece)
     end
+
+    def handle_castling(input)
+      side = input.split.last.downcase
+      if @board.can_castle?(@current_player_color, side)
+        @board.perform_castling(@current_player_color, side)
+        puts "#{@current_player_color.capitalize} castled #{side == 'k' ? 'kingside' : 'queenside'}."
+      else
+        puts 'Castling not allowed.'
+      end
+    end
   end
 end
