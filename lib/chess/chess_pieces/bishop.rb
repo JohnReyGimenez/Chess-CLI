@@ -40,6 +40,14 @@ module Chess
 
       moves
     end
+
+    def legal_moves(board)
+      valid_moves(board).select do |to_pos|
+        test_board = board.board_dup
+        test_board.move_piece_to(@location, to_pos)
+        !test_board.in_check?(color)
+      end
+    end
   end
 end
 
