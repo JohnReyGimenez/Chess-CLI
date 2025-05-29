@@ -80,5 +80,9 @@ module Chess
       @captured[color] ||= [] # Init array if needed
       @captured[color] << captured_piece if captured_piece.color == opponent
     end
+
+    def switch_players
+      @current_player_color = @current_player_color == :white ? :black : :white
+    end
   end
 end
