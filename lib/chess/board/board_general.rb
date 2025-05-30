@@ -109,5 +109,25 @@ module Chess
     def board_dup
       Marshal.load(Marshal.dump(self))
     end
+
+    def perform_castling(color, side)
+      row = (color == :white ? 7 : 0)
+      king_from = [row, 4]
+      king_to, rook_from, rook_to =
+        if side == 'k'
+          [[row, 6], [row, 7], [row, 5]]
+        else
+          [[row, 2], [row, 0], [row, 3]]
+        end
+
+      king = piece_at(king_from)
+      rook = piece_at(rook_from)
+
+      move_piece_to(king_from, king_to)
+      move_piece_to(rook_from, rook_to)
+
+      king.has_moved = true
+      rook.has_moved = true
+    end
   end
 end
