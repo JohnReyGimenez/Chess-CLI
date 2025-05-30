@@ -77,5 +77,27 @@ module Chess
       end
       nil
     end
+
+    def can_castle?(color, side)
+      king_pos = find_king(color)
+      return false unless king_pos
+
+      king = piece_at(king_pos)
+      return false unless king.is_a?(King) && !king.has_moved
+
+      row = king_pos[0]
+      rook_col = (side == 'k' ? 7 : 0)
+      rook = piece_at([row, rook_col])
+      return false unless rook.is_a?(Rook) && !rook.has_moved
+
+      path_cols = side == 'k' ? [5, 6] : [1, 2, 3]
+      return false unless path_cols.all? { |col| piece_at([row, col]).nil? }
+
+      ([4] + path_cols).all? do |col|
+        temp_board = board_dup
+        temp_board.move_piece_to(king_pos, [row, col])
+        !temp_board.in_check?(color)
+      end
+    end
   end
 end
