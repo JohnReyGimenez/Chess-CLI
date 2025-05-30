@@ -68,5 +68,14 @@ module Chess
 
       true
     end
+
+    def find_king(color)
+      @grid.each do |row|
+        row.each do |piece|
+          return piece.location if piece.is_a?(King) && piece.color == color
+        end
+      end
+      nil
+    end
   end
 end
