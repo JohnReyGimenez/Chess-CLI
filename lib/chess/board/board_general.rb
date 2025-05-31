@@ -31,6 +31,8 @@ module Chess
     end
 
     def [](square)
+      raise "Invalid square argument: #{square.inspect}" unless square.is_a?(Array) && square.size == 2
+
       row, column = square
       @grid[row][column]
     end

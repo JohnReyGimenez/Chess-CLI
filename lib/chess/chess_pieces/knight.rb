@@ -20,7 +20,7 @@ module Chess
         next unless board.in_bounds?(new_pos)
 
         # checks for new position
-        target = board[new_pos[0]][new_pos[1]]
+        target = board[new_pos]
         # Either empty or enemy piece
         moves << new_pos if target.nil? || target.color != color
       end
