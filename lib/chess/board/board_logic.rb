@@ -93,11 +93,15 @@ module Chess
       path_cols = side == 'k' ? [5, 6] : [1, 2, 3]
       return false unless path_cols.all? { |col| piece_at([row, col]).nil? }
 
-      ([4] + path_cols).all? do |col|
-        temp_board = board_dup
-        temp_board.move_piece_to(king_pos, [row, col])
-        !temp_board.in_check?(color)
+      # check king is not in check before, during, or after
+      cols_to_check = side == 'k' ? [4, 5, 6] : [4, 3, 2]
+      cols_to_check.each do |col|
+        test_board = board_dup
+        test_board.move_piece_to(king_pos, [row, col])
+        return false if test_board.in_check?(color)
       end
+
+      true
     end
   end
 end
