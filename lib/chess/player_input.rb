@@ -9,7 +9,7 @@ module Chess
       @board = board
     end
 
-    def get_move
+    def self.get_move
       loop do
         print "Enter your move (e.g., 'e2 e4') or 'save': "
         input = gets.chomp.strip.downcase

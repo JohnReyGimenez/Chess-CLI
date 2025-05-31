@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'player_input'
+
 module Chess
   # game loop, turn tracking
   class Game
@@ -31,6 +33,12 @@ module Chess
         # prompts and parses player move
         move_input = ask_for_move
         break if move_input == 'exit'
+
+        if move == :save
+          SaveLoad.new.save_game(self) # Save the entire Game object
+          puts 'Game saved. Exiting.'
+          break
+        end
 
         # handles castling separately
         if move_input.start_with?('castle')
