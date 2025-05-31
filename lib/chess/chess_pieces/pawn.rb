@@ -8,27 +8,26 @@ module Chess
 
     def valid_moves(board)
       row, col = @location
-      direction = color == :white ? -1 : 1 # direction
+      direction = color == :white ? -1 : 1
       moves = []
 
-      # 1-step
+      # 1-step forward
       one_step = [row + direction, col]
-      moves << one_step if board.in_bounds?(one_step) && board[one_step[0]][one_step[1]].nil?
+      moves << one_step if board.in_bounds?(one_step) && board[one_step].nil?
 
-      # 2-step
+      # 2-step forward
       unless has_moved
         two_step = [row + 2 * direction, col]
-        if board.in_bounds?(two_step) && board[one_step[0]][one_step[1]].nil? && board[two_step[0]][two_step[1]].nil?
-          moves << two_step
-        end
+        moves << two_step if board.in_bounds?(two_step) && board[one_step].nil? && board[two_step].nil?
       end
 
       # Diagonal captures
       [[row + direction, col - 1], [row + direction, col + 1]].each do |r, c|
-        next unless board.in_bounds?([r, c])
+        pos = [r, c]
+        next unless board.in_bounds?(pos)
 
-        target = board[r][c]
-        moves << [r, c] if target && target.color != color
+        target = board[pos]
+        moves << pos if target && target.color != color
       end
 
       moves

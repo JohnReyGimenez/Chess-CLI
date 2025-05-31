@@ -22,7 +22,7 @@ module Chess
         new_col = col + dc
 
         while board.in_bounds?([new_row, new_col])
-          target = board[new_row][new_col]
+          target = board[[new_row, new_col]]
 
           if target.nil? # if square is empty
             moves << [new_row, new_col]
