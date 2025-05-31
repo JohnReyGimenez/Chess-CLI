@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Chess
-  class BoardLogic
+  module BoardLogic
     def pieces_for(color)
       @grid.flatten.compact.select { |p| p.color == color }
     end

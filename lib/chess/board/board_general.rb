@@ -93,17 +93,11 @@ module Chess
     end
 
     def move_piece_to(from, to)
-      piece = piece_at(from)      # Find the piece to move
-      captured = piece_at(to)     # Check if something is at the destination
-
-      # Move the piece on the board
-      @grid[to[0]][to[1]] = piece
-      @grid[from[0]][from[1]] = nil
-
-      piece.position = to # Update the piece's own position data
-
-      # If it captured an opponent piece, register it
-      capture_piece(piece.color, captured) if captured
+      piece = self[from]
+      self[to] = piece
+      self[from] = nil
+      piece.location = to
+      piece.has_moved = true if piece.respond_to?(:has_moved=)
     end
 
     def board_dup
