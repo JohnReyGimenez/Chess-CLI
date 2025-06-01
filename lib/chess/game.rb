@@ -50,8 +50,13 @@ module Chess
 
         # parse and validate
         from, to = parse_move(move_input)
+
+        puts "Parsed move: from=#{from.inspect}, to=#{to.inspect}" # 👈 TESTT
+        puts "Valid? #{valid_move?(from, to)}"
+
         if from && to && valid_move?(from, to)
           @board.move_piece_to(from, to)
+          puts "Moved piece from #{from} to #{to}" # TESTING FOR NOW!!
           check_promotion(to)
           turn += 1
           switch_players
@@ -91,10 +96,12 @@ module Chess
     end
 
     def parse_move(input)
-      parts = input.strip.downcase.split
-      return nil unless parts.size == 2
+      input = input.strip.downcase
+      return nil unless input.length == 4
 
-      [parse_position(parts[0]), parse_position(parts[1])]
+      from = input[0..1]
+      to = input[2..3]
+      [parse_position(from), parse_position(to)]
     end
 
     def check_promotion(to)
