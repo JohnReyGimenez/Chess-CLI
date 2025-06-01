@@ -62,10 +62,7 @@ module Chess
     end
 
     def display_turn_info(turn_number, current_player)
-      color_code = current_player == :white ? 47 : 100
-      text_color = current_player == :white ? 30 : 37
-
-      puts "\n\e[1;#{color_code}m Turn #{turn_number} \e[0m  \e[1;#{text_color}m#{current_player.capitalize}'s move\e[0m"
+      puts "\nTurn #{turn_number}  #{current_player.capitalize}'s move"
       puts '-' * 45
       puts "> Move using notation: e.g. 'e2e4'"
       puts "> Castle with: 'castle k' or 'castle q'"
