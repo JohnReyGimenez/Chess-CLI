@@ -34,7 +34,7 @@ module Chess
         move_input = ask_for_move
         break if move_input == 'exit'
 
-        if move == :save
+        if move_input == :save
           SaveLoad.new.save_game(self) # Save the entire Game object
           puts 'Game saved. Exiting.'
           break

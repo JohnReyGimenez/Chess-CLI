@@ -81,19 +81,6 @@ module Chess
       [row, col]
     end
 
-    def valid_move_input?(input)
-      input = input.downcase.strip
-      return true if input == 'exit'
-      return true if ['castle k', 'castle q'].include?(input)
-      return false unless input.length == 4
-
-      from = input[0..1]
-      to = input[2..3]
-      valid_positions = ('a'..'h').to_a.product((1..8).to_a).map { |l, n| "#{l}#{n}" }
-
-      valid_positions.include?(from) && valid_positions.include?(to)
-    end
-
     def move_piece_to(from, to)
       piece = self[from]
       self[to] = piece
