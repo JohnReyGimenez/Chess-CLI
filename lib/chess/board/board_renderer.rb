@@ -140,5 +140,11 @@ module Chess
         print '│'
       end
     end
+
+    def render_captured(captured)
+      puts "\nCaptured Pieces:"
+      puts "White: #{captured[:black].map(&:symbol).join(' ')}"
+      puts "Black: #{captured[:white].map(&:symbol).join(' ')}"
+    end
   end
 end
