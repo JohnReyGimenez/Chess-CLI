@@ -61,8 +61,10 @@ module Chess
         puts "Valid? #{valid_move?(from, to)}"
 
         if from && to && valid_move?(from, to)
+          target_piece = @board.piece_at(to)
           @board.move_piece_to(from, to)
-          puts "Moved piece from #{from} to #{to}" # TESTING FOR NOW!!
+          capture_piece(@current_player_color, target_piece) if target_piece
+          puts "Moved piece from #{from} to #{to}"
           check_promotion(to)
           puts '[DEBUG] Move succeeded. Piece moved. Switching turns.'
           turn += 1
