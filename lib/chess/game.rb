@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'player_input'
+require_relative 'save_load'
 
 module Chess
   # game loop, turn tracking
@@ -73,7 +74,7 @@ module Chess
 
     def display_turn_info(turn_number, current_player)
       puts "\nTurn #{turn_number}  #{current_player.capitalize}'s move"
-      puts '-' * 45
+      puts '─' * 45
       puts "> Move using notation: e.g. 'e2e4'"
       puts "> Castle with: 'castle k' or 'castle q'"
       puts "> Type 'exit' to quit."
@@ -150,6 +151,16 @@ module Chess
         puts "#{@current_player_color.capitalize} castled #{side == 'k' ? 'kingside' : 'queenside'}."
       else
         puts 'Castling not allowed.'
+      end
+    end
+
+    def self.load_game
+      if File.exist?('save_file.sav')
+        puts 'Loading saved game...'
+        YAML.load_file('save_file.sav')
+      else
+        puts 'No save file found. Starting a new game.'
+        Game.new
       end
     end
   end
