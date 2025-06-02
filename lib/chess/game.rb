@@ -18,8 +18,9 @@ module Chess
     def play_game
       turn = 1
       loop do
-        system('clear')                    # clears terminal
-        @renderer.render                   # renders the current board state
+        system('clear') # clears terminal
+        @renderer.render
+        @renderer.render_captured(@captured) # renders the current board state
         display_turn_info(turn, @current_player_color)
 
         # checks for game end conditions
