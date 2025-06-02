@@ -96,8 +96,8 @@ module Chess
 
     def capture_piece(color, captured_piece)
       opponent = color == :white ? :black : :white
-      @captured[color] ||= [] # Init array if needed
-      @captured[color] << captured_piece if captured_piece.color == opponent
+      @captured[opponent] ||= [] # Init array for opponent if needed
+      @captured[opponent] << captured_piece if captured_piece
     end
 
     def valid_move?(from, to)
