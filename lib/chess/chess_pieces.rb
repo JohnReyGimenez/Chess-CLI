@@ -15,10 +15,14 @@ module Chess
     end
 
     def to_s
-      case color
+      case @color
       when :white then self.class::WHITE
       else self.class::BLACK
       end
+    end
+
+    def symbol
+      self.class.const_get(color.upcase)
     end
   end
 end
