@@ -22,7 +22,8 @@ module Chess
     end
 
     def symbol
-      self.class.const_get(color.upcase)
+      const_name = color == :white ? 'WHITE' : 'BLACK'
+      self.class.const_defined?(const_name) ? self.class.const_get(const_name) : '?'
     end
   end
 end
