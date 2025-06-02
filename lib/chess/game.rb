@@ -43,6 +43,7 @@ module Chess
         # handles castling separately
         if move_input.start_with?('castle')
           handle_castling(move_input)
+          puts '[DEBUG] Move succeeded. Piece moved. Switching turns.'
           turn += 1
           switch_players
           next
@@ -50,6 +51,9 @@ module Chess
 
         # parse and validate
         from, to = parse_move(move_input)
+        puts "[DEBUG] Input: #{move_input}"
+        puts "[DEBUG] Parsed from: #{from.inspect}, to: #{to.inspect}"
+        puts "[DEBUG] Is move valid? #{valid_move?(from, to)}"
 
         puts "Parsed move: from=#{from.inspect}, to=#{to.inspect}" # 👈 TESTT
         puts "Valid? #{valid_move?(from, to)}"
@@ -58,6 +62,7 @@ module Chess
           @board.move_piece_to(from, to)
           puts "Moved piece from #{from} to #{to}" # TESTING FOR NOW!!
           check_promotion(to)
+          puts '[DEBUG] Move succeeded. Piece moved. Switching turns.'
           turn += 1
           switch_players
         else
@@ -89,6 +94,14 @@ module Chess
       opponent = color == :white ? :black : :white
       @captured[color] ||= [] # Init array if needed
       @captured[color] << captured_piece if captured_piece.color == opponent
+    end
+
+    def valid_move?(from, to)
+      piece = @board[from]
+      return false unless piece # no piece at that location
+      return false unless piece.color == @current_player_color
+
+      piece.legal_moves(@board).include?(to)
     end
 
     def switch_players
