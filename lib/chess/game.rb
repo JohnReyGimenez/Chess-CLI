@@ -95,6 +95,15 @@ module Chess
       @current_player_color = @current_player_color == :white ? :black : :white
     end
 
+    def parse_position(str)
+      col_map = { 'a' => 0, 'b' => 1, 'c' => 2, 'd' => 3, 'e' => 4, 'f' => 5, 'g' => 6, 'h' => 7 }
+      return nil unless str.length == 2 && col_map.key?(str[0]) && str[1].to_i.between?(1, 8)
+
+      row = 8 - str[1].to_i
+      col = col_map[str[0]]
+      [row, col]
+    end
+
     def parse_move(input)
       input = input.strip.downcase
       return nil unless input.length == 4
