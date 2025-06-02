@@ -6,6 +6,10 @@ module Chess
     WHITE = '♝'.colorize(color: :blue)
     BLACK = '♝'.colorize(color: :black)
 
+    def symbol
+      color == :white ? WHITE : BLACK
+    end
+
     def valid_moves(board)
       row, col = @location
 
