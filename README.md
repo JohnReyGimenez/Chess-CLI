@@ -23,5 +23,3 @@ UI style and board rendering logic heavily inspired by Lucas Sorribes' [Ruby Che
 
 ## Preview
 
-### Static board
-![Chess Board Screenshot](media/board.png)
