@@ -75,12 +75,6 @@ module Chess
       @grid[row][col]
     end
 
-    def parse_position(pos)
-      col = pos[0].ord - 'a'.ord
-      row = 8 - pos[1].to_i
-      [row, col]
-    end
-
     def move_piece_to(from, to)
       piece = self[from]
       self[to] = piece
