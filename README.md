@@ -21,7 +21,7 @@ A command-line Chess game built with Ruby. This project focuses on object-orient
 ## Installation
 
 1. Fork the Repository:
-   - Go to the [Chess-CLI]https://github.com/JohnReyGimenez/Chess-CLI) repository and click the Fork button to create your own copy of the project.
+   - Go to the [Chess-CLI](https://github.com/JohnReyGimenez/Chess-CLI) repository and click the Fork button to create your own copy of the project.
 2. Clone the repository.
    ```bash
    git@github.com:JohnReyGimenez/Chess-CLI.git
