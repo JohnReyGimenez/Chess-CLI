@@ -9,6 +9,15 @@ A command-line Chess game built with Ruby. This project focuses on object-orient
 - Check and checkmate detection
 - Save and load game functionality
 
+### Prerequisites
+- **Ruby**: Ensure Ruby is installed on your system.
+   ```bash
+  ruby -v
+- **Bundler**: Install Bundler to manage dependencies.
+  ```bash
+   gem install bundler
+---
+
 ## Installation
 
 1. Fork the Repository:
