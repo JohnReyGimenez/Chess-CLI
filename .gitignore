@@ -2,6 +2,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=ruby
 
 ### Ruby ###
+dev_notes.md
 *.gem
 *.rbc
 /.config
