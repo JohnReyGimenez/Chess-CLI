@@ -28,6 +28,7 @@ module Chess
       # Initialize an 8x8 board with empty spaces
       @grid = Array.new(SQUARE_ORDER) { Array.new(SQUARE_ORDER) }
       @square_order = SQUARE_ORDER
+      @en_passant_target = nil # set to the square that can be captured en passant
     end
 
     def [](square)
