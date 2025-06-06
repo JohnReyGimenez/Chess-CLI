@@ -157,14 +157,8 @@ module Chess
       end
     end
 
-    def self.load_game
-      if File.exist?('save_file.sav')
-        puts 'Loading saved game...'
-        YAML.load_file('save_file.sav')
-      else
-        puts 'No save file found. Starting a new game.'
-        Game.new
-      end
+    def opponent_color
+      @current_player_color == :white ? :black : :white
     end
   end
 end
