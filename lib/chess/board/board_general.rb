@@ -22,7 +22,7 @@ module Chess
       ]
     }.freeze
 
-    attr_reader :grid, :square_order
+    attr_reader :grid, :square_order, :en_passant_target
 
     def initialize
       # Initialize an 8x8 board with empty spaces
@@ -78,6 +78,16 @@ module Chess
 
     def move_piece_to(from, to)
       piece = self[from]
+
+      # Detect double pawn move to enable en passant
+      if piece.is_a?(Pawn) && (from[1] - to[1]).abs == 2
+        file = from[0]
+        rank = (from[1] + to[1]) / 2 # square between the move
+        @en_passant_target = [file, rank]
+      else
+        @en_passant_target = nil
+      end
+
       self[to] = piece
       self[from] = nil
       piece.location = to
