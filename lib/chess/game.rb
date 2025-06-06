@@ -18,12 +18,12 @@ module Chess
     def play_game
       turn = 1
       loop do
-        system('clear') # clears terminal
+        system('clear')
         @renderer.render
-        @renderer.render_captured(@captured) # renders the current board state
+        @renderer.render_captured(@captured)
         display_turn_info(turn, @current_player_color)
 
-        # checks for game end conditions
+        # Game end conditions
         if @board.checkmate?(@current_player_color)
           puts "#{@current_player_color.capitalize} is checkmated! Game over."
           break
@@ -32,33 +32,32 @@ module Chess
           break
         end
 
-        # prompts and parses player move
+        # Prompt player input
         move_input = ask_for_move
         break if move_input == 'exit'
 
         if move_input == :save
-          SaveLoad.new.save_game(self) # Save the entire Game object
+          SaveLoad.new.save_game(self)
           puts 'Game saved. Exiting.'
           break
         end
 
-        # handles castling separately
         if move_input.start_with?('castle')
           handle_castling(move_input)
           puts '[DEBUG] Move succeeded. Piece moved. Switching turns.'
+
+          # show check after castling, if it causes it
+          puts "#{opponent_color.capitalize} is in check!" if @board.in_check?(opponent_color)
+
           turn += 1
           switch_players
           next
         end
 
-        # parse and validate
         from, to = parse_move(move_input)
         puts "[DEBUG] Input: #{move_input}"
         puts "[DEBUG] Parsed from: #{from.inspect}, to: #{to.inspect}"
         puts "[DEBUG] Is move valid? #{valid_move?(from, to)}"
-
-        puts "Parsed move: from=#{from.inspect}, to=#{to.inspect}" # 👈 TESTT
-        puts "Valid? #{valid_move?(from, to)}"
 
         if from && to && valid_move?(from, to)
           target_piece = @board.piece_at(to)
@@ -66,7 +65,11 @@ module Chess
           capture_piece(@current_player_color, target_piece) if target_piece
           puts "Moved piece from #{from} to #{to}"
           check_promotion(to)
-          puts '[DEBUG] Move succeeded. Piece moved. Switching turns.'
+          puts '[DEBUG] Move succeeded. Piece moved.'
+
+          # heck if opponent is in check AFTER move
+          puts "#{opponent_color.capitalize} is in check!" if @board.in_check?(opponent_color)
+
           turn += 1
           switch_players
         else
