@@ -79,19 +79,28 @@ module Chess
     def move_piece_to(from, to)
       piece = self[from]
 
-      # Detect double pawn move to enable en passant
-      if piece.is_a?(Pawn) && (from[1] - to[1]).abs == 2
-        file = from[0]
-        rank = (from[1] + to[1]) / 2 # square between the move
-        @en_passant_target = [file, rank]
-      else
-        @en_passant_target = nil
+      # reset en passant target by default
+      @en_passant_target = nil
+
+      # if pawn is making a two-step move
+      if piece.is_a?(Pawn) && (from[0] - to[0]).abs == 2
+        direction = piece.color == :white ? -1 : 1
+        row = from[0] + direction
+        col = from[1]
+        @en_passant_target = [row, col]
+      end
+
+      # handles en passant capture
+      if piece.is_a?(Pawn) && to == @en_passant_target && self[to].nil?
+        captured_pawn_row = from[0]
+        captured_pawn_col = to[1]
+        self[[captured_pawn_row, captured_pawn_col]] = nil
       end
 
       self[to] = piece
       self[from] = nil
       piece.location = to
-      piece.has_moved = true if piece.respond_to?(:has_moved=)
+      piece.has_moved = true
     end
 
     def board_dup
