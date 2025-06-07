@@ -35,14 +35,18 @@ module Chess
       end
 
       # En passant
-      side_captures = [[-1, forward_dir], [1, forward_dir]]
+      side_captures = [[0, -1], [0, 1]] # left and right same row
       side_captures.each do |dx, dy|
-        x = location[0] + dx
-        y = location[1] + dy
-        en_passant_pos = [x, y]
+        adjacent = [row + dx, col + dy]
+        next unless board.in_bounds?(adjacent)
 
-        moves << en_passant_pos if board.en_passant_target == en_passant_pos
+        target_piece = board[adjacent]
+        next unless target_piece.is_a?(Pawn) && target_piece.color != color
+
+        en_passant_square = [row + direction, col + dy]
+        moves << en_passant_square if en_passant_square == board.en_passant_target
       end
+
       moves
     end
 
