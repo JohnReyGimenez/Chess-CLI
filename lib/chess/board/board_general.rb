@@ -82,25 +82,28 @@ module Chess
       # reset en passant target by default
       @en_passant_target = nil
 
-      # if pawn is making a two-step move
-      if piece.is_a?(Pawn) && (from[0] - to[0]).abs == 2
-        direction = piece.color == :white ? -1 : 1
-        row = from[0] + direction
-        col = from[1]
-        @en_passant_target = [row, col]
-      end
+      # track en passant capture before move
+      en_passant_capture = false
+      en_passant_capture = true if piece.is_a?(Pawn) && to == @en_passant_target && self[to].nil?
 
-      # handles en passant capture
-      if piece.is_a?(Pawn) && to == @en_passant_target && self[to].nil?
-        captured_pawn_row = from[0]
-        captured_pawn_col = to[1]
-        self[[captured_pawn_row, captured_pawn_col]] = nil
-      end
-
+      # move piece normally
       self[to] = piece
       self[from] = nil
       piece.location = to
       piece.has_moved = true
+
+      # set en passant target if double move
+      if piece.is_a?(Pawn) && (from[0] - to[0]).abs == 2
+        direction = piece.color == :white ? -1 : 1
+        @en_passant_target = [from[0] + direction, from[1]]
+      end
+
+      # remove the captured pawn if it was an en passant move
+      return unless en_passant_capture
+
+      captured_pawn_row = from[0]
+      captured_pawn_col = to[1]
+      self[[captured_pawn_row, captured_pawn_col]] = nil
     end
 
     def board_dup
