@@ -37,14 +37,12 @@ module Chess
       # En passant
       side_captures = [[-1, forward_dir], [1, forward_dir]]
       side_captures.each do |dx, dy|
-      x = location[0] + dx
-      y = location[1] + dy
-      en_passant_pos = [x, y]
+        x = location[0] + dx
+        y = location[1] + dy
+        en_passant_pos = [x, y]
 
-      if board.en_passant_target == en_passant_pos
-        moves << en_passant_pos
+        moves << en_passant_pos if board.en_passant_target == en_passant_pos
       end
-
       moves
     end
 
