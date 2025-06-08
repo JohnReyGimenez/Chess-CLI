@@ -75,17 +75,16 @@ module Chess
       row, col = pos
       @grid[row][col]
     end
-
-    def handle_en_passant(from, to, piece)
-      return unless piece.is_a?(Pawn) && @en_passant_target == to && self[to].nil?
-
-      captured_pawn_square = [from[0], to[1]]
-      captured_pawn = self[captured_pawn_square]
-      return unless captured_pawn.is_a?(Pawn) # safety check
-
-      self[captured_pawn_square] = nil
+    
+    def handle_en_passant(piece, start_pos, end_pos)
+      captured_pawn_pos = [start_pos[0], end_pos[1]]
+      captured_pawn = self[captured_pawn_pos]
+      return unless captured_pawn # <-- prevent nil errors
+    
+      self[captured_pawn_pos] = nil
       @captured_pieces[captured_pawn.color] << captured_pawn
     end
+    
 
     def move_piece_to(from, to)
       piece = self[from]
