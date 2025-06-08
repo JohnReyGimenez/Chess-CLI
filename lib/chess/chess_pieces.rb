@@ -3,7 +3,7 @@
 # lib/chess/chess_pieces.rb
 
 module Chess
-  # Class that stores movement logic and other piece variables
+  # base class for all pieces – stores color, location, movement state
   class Piece
     attr_reader :color
     attr_accessor :location, :has_moved
@@ -11,10 +11,11 @@ module Chess
     def initialize(location, color)
       @location = location
       @color = color
-      @has_moved = false
+      @has_moved = false # useful for castling, pawn logic
     end
 
     def to_s
+      # return unicode symbol for rendering
       case @color
       when :white then self.class::WHITE
       else self.class::BLACK
@@ -22,6 +23,7 @@ module Chess
     end
 
     def symbol
+      # fallback symbol access if needed
       const_name = color == :white ? 'WHITE' : 'BLACK'
       self.class.const_defined?(const_name) ? self.class.const_get(const_name) : '?'
     end

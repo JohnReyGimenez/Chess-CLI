@@ -42,11 +42,11 @@ module Chess
           break
         end
 
+        # Castling logic (e.g., 'castle k' or 'castle q')
         if move_input.start_with?('castle')
           handle_castling(move_input)
-          puts '[DEBUG] Move succeeded. Piece moved. Switching turns.'
 
-          # show check after castling, if it causes it
+          # notify player if castling puts opponent in check
           puts "#{opponent_color.capitalize} is in check!" if @board.in_check?(opponent_color)
 
           turn += 1
@@ -55,19 +55,14 @@ module Chess
         end
 
         from, to = parse_move(move_input)
-        puts "[DEBUG] Input: #{move_input}"
-        puts "[DEBUG] Parsed from: #{from.inspect}, to: #{to.inspect}"
-        puts "[DEBUG] Is move valid? #{valid_move?(from, to)}"
 
         if from && to && valid_move?(from, to)
           target_piece = @board.piece_at(to)
           @board.move_piece_to(from, to)
           capture_piece(@current_player_color, target_piece) if target_piece
-          puts "Moved piece from #{from} to #{to}"
           check_promotion(to)
-          puts '[DEBUG] Move succeeded. Piece moved.'
 
-          # heck if opponent is in check AFTER move
+          # check status after move
           puts "#{opponent_color.capitalize} is in check!" if @board.in_check?(opponent_color)
 
           turn += 1
@@ -92,17 +87,19 @@ module Chess
       Chess::PlayerInput.get_move
     end
 
+    # feedback after successful castling (main output comes from handle_castling)
     def castle(color, side)
-      # later: Add logic for king and rook movement, safety checks, etc.
       puts "#{color.capitalize} castled #{side == 'k' ? 'kingside' : 'queenside'}."
     end
 
+    # track captured pieces for each side
     def capture_piece(color, captured_piece)
       opponent = color == :white ? :black : :white
       @captured[opponent] ||= [] # Init array for opponent if needed
       @captured[opponent] << captured_piece if captured_piece
     end
 
+    # move validation scoped to current player's turn
     def valid_move?(from, to)
       piece = @board[from]
       return false unless piece # no piece at that location
@@ -115,6 +112,7 @@ module Chess
       @current_player_color = @current_player_color == :white ? :black : :white
     end
 
+    # convert notation (e.g. 'e2') to board coordinates
     def parse_position(str)
       col_map = { 'a' => 0, 'b' => 1, 'c' => 2, 'd' => 3, 'e' => 4, 'f' => 5, 'g' => 6, 'h' => 7 }
       return nil unless str.length == 2 && col_map.key?(str[0]) && str[1].to_i.between?(1, 8)
@@ -124,6 +122,7 @@ module Chess
       [row, col]
     end
 
+    # handle full move strings like 'e2e4'
     def parse_move(input)
       input = input.strip.downcase
       return nil unless input.length == 4
@@ -133,6 +132,7 @@ module Chess
       [parse_position(from), parse_position(to)]
     end
 
+    # pawn promotion prompt (defaults to Queen if invalid input)
     def check_promotion(to)
       piece = @board.piece_at(to)
       return unless piece.is_a?(Pawn)
@@ -150,6 +150,7 @@ module Chess
       @board.place_piece(to, new_piece)
     end
 
+    # castling validation and execution
     def handle_castling(input)
       side = input.split.last.downcase
       if @board.can_castle?(@current_player_color, side)

@@ -10,7 +10,8 @@ module Chess
   class Board
     include BoardLogic
     SQUARE_ORDER = 8
-    # format: [piece_class, row, col]
+
+    # starting setup: [piece class, row, col]
     INITIAL_SETUP = {
       black: [
         [Rook, 0, 0], [Knight, 0, 1], [Bishop, 0, 2], [Queen, 0, 3],
@@ -25,15 +26,14 @@ module Chess
     attr_reader :grid, :square_order, :en_passant_target
 
     def initialize
-      # Initialize an 8x8 board with empty spaces
+      # build empty 8x8 grid
       @grid = Array.new(SQUARE_ORDER) { Array.new(SQUARE_ORDER) }
       @square_order = SQUARE_ORDER
-      @en_passant_target = nil # set to the square that can be captured en passant
+      @en_passant_target = nil # set if a pawn moved 2 steps
     end
 
     def [](square)
       raise "Invalid square argument: #{square.inspect}" unless square.is_a?(Array) && square.size == 2
-
       row, column = square
       @grid[row][column]
     end
@@ -60,7 +60,7 @@ module Chess
         end
       end
 
-      # places pawns
+      # place pawns
       8.times do |col|
         place_pieces(Pawn, 1, col, :black)
         place_pieces(Pawn, 6, col, :white)
@@ -81,7 +81,7 @@ module Chess
 
       captured_pawn_square = [from[0], to[1]]
       captured_pawn = self[captured_pawn_square]
-      return unless captured_pawn.is_a?(Pawn) # Safety check
+      return unless captured_pawn.is_a?(Pawn) # safety check
 
       self[captured_pawn_square] = nil
       @captured_pieces[captured_pawn.color] << captured_pawn
@@ -90,10 +90,9 @@ module Chess
     def move_piece_to(from, to)
       piece = self[from]
 
-      # handle en passant before move
       handle_en_passant(from, to, piece)
 
-      # standard capture (only if not en passant)
+      # capture if any
       if self[to]
         captured_piece = self[to]
         @captured_pieces[captured_piece.color] << captured_piece
@@ -104,7 +103,7 @@ module Chess
       piece.location = to
       piece.has_moved = true
 
-      # update en passant square (if pawn moved two squares)
+      # mark en passant square if pawn moved 2 tiles
       if piece.is_a?(Pawn) && (from[0] - to[0]).abs == 2
         direction = piece.color == :white ? -1 : 1
         @en_passant_target = [from[0] + direction, from[1]]

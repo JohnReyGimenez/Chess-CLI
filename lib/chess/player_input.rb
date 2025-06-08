@@ -3,7 +3,7 @@
 require_relative 'board/board_general'
 
 module Chess
-  # Class that stores movement logic and other piece variables
+  # handles user input + basic validation
   class PlayerInput
     def initialize
       @board = board
