@@ -81,7 +81,7 @@ module Chess
 
       captured_pawn_square = [from[0], to[1]]
       captured_pawn = self[captured_pawn_square]
-      return unless captured_pawn&.is_a?(Pawn) # Safety check
+      return unless captured_pawn.is_a?(Pawn) # Safety check
 
       self[captured_pawn_square] = nil
       @captured_pieces[captured_pawn.color] << captured_pawn
@@ -90,23 +90,21 @@ module Chess
     def move_piece_to(from, to)
       piece = self[from]
 
-      # detect en passant before making the move
-      en_passant_capture = piece.is_a?(Pawn) && to == @en_passant_target && self[to].nil?
+      # handle en passant before move
+      handle_en_passant(from, to, piece)
 
-      # move the piece
+      # standard capture (only if not en passant)
+      if self[to]
+        captured_piece = self[to]
+        @captured_pieces[captured_piece.color] << captured_piece
+      end
+
       self[to] = piece
       self[from] = nil
       piece.location = to
       piece.has_moved = true
 
-      # remove captured pawn if en passant
-      if en_passant_capture
-        captured_pawn_row = from[0]
-        captured_pawn_col = to[1]
-        self[[captured_pawn_row, captured_pawn_col]] = nil
-      end
-
-      # set en passant target square
+      # update en passant square (if pawn moved two squares)
       if piece.is_a?(Pawn) && (from[0] - to[0]).abs == 2
         direction = piece.color == :white ? -1 : 1
         @en_passant_target = [from[0] + direction, from[1]]
