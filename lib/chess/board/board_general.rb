@@ -88,9 +88,8 @@ module Chess
 
     def move_piece_to(from, to)
       piece = self[from]
-      
-      handle_en_passant(piece, from, to) if piece.is_a?(Pawn) && @en_passant_target
 
+      handle_en_passant(piece, from, to) if piece.is_a?(Pawn) && @en_passant_target
 
       # capture if any
       if self[to]
