@@ -23,7 +23,7 @@ module Chess
         @renderer.render_captured(@captured)
         display_turn_info(turn, @current_player_color)
 
-        # Game end conditions
+        # game end conditions
         if @board.checkmate?(@current_player_color)
           puts "#{@current_player_color.capitalize} is checkmated! Game over."
           break
@@ -32,7 +32,7 @@ module Chess
           break
         end
 
-        # Prompt player input
+        # prompt player input
         move_input = ask_for_move
         break if move_input == 'exit'
 
@@ -42,7 +42,7 @@ module Chess
           break
         end
 
-        # Castling logic (e.g., 'castle k' or 'castle q')
+        # castling logic
         if move_input.start_with?('castle')
           handle_castling(move_input)
 
@@ -57,11 +57,7 @@ module Chess
         from, to = parse_move(move_input)
 
         if from && to && valid_move?(from, to)
-          target_piece = @board.piece_at(to)
-          @board.move_piece_to(from, to)
-
-          # capture logic after move, check what piece was removed
-          captured_piece = target_piece || (@board.en_passant_target && !@board.piece_at(to).is_a?(Pawn) ? nil : nil)
+          captured_piece = @board.move_piece_to(from, to)
           capture_piece(@current_player_color, captured_piece) if captured_piece
 
           check_promotion(to)
@@ -97,10 +93,11 @@ module Chess
     end
 
     # track captured pieces for each side
-    def capture_piece(color, captured_piece)
-      opponent = color == :white ? :black : :white
-      @captured[opponent] ||= [] # Init array for opponent if needed
-      @captured[opponent] << captured_piece if captured_piece
+    def capture_piece(current_color, piece)
+      return unless piece
+
+      opponent = current_color == :white ? :black : :white
+      @captured[opponent] << piece
     end
 
     # move validation scoped to current player's turn

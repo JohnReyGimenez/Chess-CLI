@@ -78,20 +78,16 @@ module Chess
       @grid[row][col]
     end
 
-    def handle_en_passant(_piece, start_pos, end_pos)
-      captured_pawn_pos = [start_pos[0], end_pos[1]]
-      captured_pawn = self[captured_pawn_pos]
-      return unless captured_pawn
-
-      self[captured_pawn_pos] = nil
-      captured_pawn
-    end
-
     def move_piece_to(from, to)
       piece = self[from]
-      return unless piece # prevents calling methods on nil
+      return unless piece
 
-      handle_en_passant(piece, from, to) if piece.is_a?(Pawn) && @en_passant_target
+      # handle en passant capture
+      captured_piece = if piece.is_a?(Pawn) && @en_passant_target && to == @en_passant_target
+                         handle_en_passant(piece, from, to)
+                       else
+                         self[to]
+                       end
 
       self[to] = piece
       self[from] = nil
@@ -105,6 +101,20 @@ module Chess
       else
         @en_passant_target = nil
       end
+
+      captured_piece
+    end
+
+    def handle_en_passant(_piece, start_pos, end_pos)
+      captured_pawn_pos = [start_pos[0], end_pos[1]]
+      captured_pawn = self[captured_pawn_pos]
+
+      # en passant is only valid if there is an adjacent pawn on the correct rank
+      if captured_pawn.is_a?(Pawn)
+        self[captured_pawn_pos] = nil
+        return captured_pawn
+      end
+      nil
     end
 
     def board_dup
