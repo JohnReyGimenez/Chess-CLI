@@ -58,7 +58,7 @@ module Chess
 
         if from && to && valid_move?(from, to)
           captured_piece = @board.move_piece_to(from, to)
-          capture_piece(@current_player_color, captured_piece) if captured_piece
+          capture_piece(captured_piece) if captured_piece
 
           check_promotion(to)
 
@@ -93,11 +93,12 @@ module Chess
     end
 
     # track captured pieces for each side
-    def capture_piece(current_color, piece)
+    def capture_piece(piece)
       return unless piece
 
-      opponent = current_color == :white ? :black : :white
-      @captured[opponent] << piece
+      # flips color to assign it to the opponent's captures
+      flipped_color = piece.color == :white ? :black : :white
+      @captured[flipped_color] << piece
     end
 
     # move validation scoped to current player's turn
