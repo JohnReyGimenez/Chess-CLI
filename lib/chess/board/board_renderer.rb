@@ -142,9 +142,18 @@ module Chess
     end
 
     def render_captured(captured)
-      puts "\nCaptured Pieces:"
-      puts "White: #{captured[:white].map(&:symbol).join(' ')}"
-      puts "Black: #{captured[:black].map(&:symbol).join(' ')}"
+      white = captured[:white].map(&:to_s).join(' ')
+      black = captured[:black].map(&:to_s).join(' ')
+
+      puts
+      puts 'White captures: '.colorize(background: :light_white,
+                                       color: :black) + white.colorize(
+                                         background: :light_white, color: :black
+                                       )
+      puts 'Black captures: '.colorize(background: :black,
+                                       color: :white) + black.colorize(
+                                         background: :black, color: :white
+                                       )
     end
   end
 end
