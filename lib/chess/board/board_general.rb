@@ -89,14 +89,9 @@ module Chess
 
     def move_piece_to(from, to)
       piece = self[from]
+      return unless piece # prevents calling methods on nil
 
       handle_en_passant(piece, from, to) if piece.is_a?(Pawn) && @en_passant_target
-
-      # capture if any
-      if self[to]
-        captured_piece = self[to]
-        @captured_pieces[captured_piece.color] << captured_piece
-      end
 
       self[to] = piece
       self[from] = nil
