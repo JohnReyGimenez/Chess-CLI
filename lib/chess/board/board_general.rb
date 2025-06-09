@@ -3,6 +3,7 @@
 require 'colorize'
 require_relative '../chess_pieces'
 require_relative '../player_input'
+require_relative '../game'
 require_relative 'board_logic'
 
 module Chess
@@ -77,13 +78,13 @@ module Chess
       @grid[row][col]
     end
 
-    def handle_en_passant(piece, start_pos, end_pos)
+    def handle_en_passant(_piece, start_pos, end_pos)
       captured_pawn_pos = [start_pos[0], end_pos[1]]
       captured_pawn = self[captured_pawn_pos]
       return unless captured_pawn
 
       self[captured_pawn_pos] = nil
-      capture_piece(piece.color, captured_pawn)
+      captured_pawn
     end
 
     def move_piece_to(from, to)
