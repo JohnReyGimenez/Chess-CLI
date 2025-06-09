@@ -142,8 +142,8 @@ module Chess
     end
 
     def render_captured(captured)
-      white = captured[:white].map(&:to_s).join(' ')
-      black = captured[:black].map(&:to_s).join(' ')
+      white = format_captured(captured[:white])
+      black = format_captured(captured[:black])
 
       puts
       puts 'White captures: '.colorize(background: :light_white,
@@ -154,6 +154,16 @@ module Chess
                                        color: :white) + black.colorize(
                                          background: :black, color: :white
                                        )
+    end
+
+    def format_captured(pieces)
+      return 'None' if pieces.empty?
+
+      counts = pieces.each_with_object(Hash.new(0)) do |piece, hash|
+        hash[piece.to_s] += 1
+      end
+
+      counts.map { |symbol, count| count > 1 ? "#{symbol}×#{count}" : symbol }.join(' ')
     end
   end
 end
