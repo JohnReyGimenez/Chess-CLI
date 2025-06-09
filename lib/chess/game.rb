@@ -57,16 +57,12 @@ module Chess
         from, to = parse_move(move_input)
 
         if from && to && valid_move?(from, to)
-          captured = nil
-          if @board.piece_at(from).is_a?(Pawn) && @board.en_passant_target
-            captured = @board.handle_en_passant(@board.piece_at(from), from, to)
-          end
-
           target_piece = @board.piece_at(to)
           @board.move_piece_to(from, to)
 
-          capture_piece(@current_player_color, captured) if captured
-          capture_piece(@current_player_color, target_piece) if target_piece && captured != target_piece
+          # capture logic after move, check what piece was removed
+          captured_piece = target_piece || (@board.en_passant_target && !@board.piece_at(to).is_a?(Pawn) ? nil : nil)
+          capture_piece(@current_player_color, captured_piece) if captured_piece
 
           check_promotion(to)
 
