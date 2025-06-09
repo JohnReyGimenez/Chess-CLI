@@ -3,7 +3,7 @@
 require_relative 'board/board_general'
 
 module Chess
-  # handles user input + basic validation
+  # handles user input and basic validation
   class PlayerInput
     def initialize
       @board = board
@@ -24,7 +24,6 @@ module Chess
 
     def self.get_move
       loop do
-        print "Enter your move (e.g., 'e2 e4') or 'save': "
         input = gets.chomp.strip.downcase
 
         return :save if input == 'save'
