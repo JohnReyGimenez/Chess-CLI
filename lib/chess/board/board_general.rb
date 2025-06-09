@@ -34,6 +34,7 @@ module Chess
 
     def [](square)
       raise "Invalid square argument: #{square.inspect}" unless square.is_a?(Array) && square.size == 2
+
       row, column = square
       @grid[row][column]
     end
@@ -76,15 +77,14 @@ module Chess
       @grid[row][col]
     end
 
-    def handle_en_passant(piece, start_pos, end_pos)
+    def handle_en_passant(_piece, start_pos, end_pos)
       captured_pawn_pos = [start_pos[0], end_pos[1]]
       captured_pawn = self[captured_pawn_pos]
       return unless captured_pawn # prevents nil errors lol
-    
+
       self[captured_pawn_pos] = nil
       @captured_pieces[captured_pawn.color] << captured_pawn
     end
-    
 
     def move_piece_to(from, to)
       piece = self[from]
