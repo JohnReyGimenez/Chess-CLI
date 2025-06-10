@@ -13,18 +13,20 @@ RSpec.describe Chess::King do
     end
   end
 
-  describe '#legal_moves' do
+  describe '#valid_moves' do
     it 'returns only legal 1-step moves for the king' do
       board = double('board')
       allow(board).to receive(:in_bounds?).and_return(true)
-      allow(board).to receive(:[]).and_return(nil) # simulate empty board
+      allow(board).to receive(:[]).and_return(nil) # empty board
 
       king = Chess::King.new([4, 4], :white)
-      expect(king.valid_moves(board).sort).to match_array([
-        [3, 3], [3, 4], [3, 5], # rubocop:disable Layout/FirstArrayElementIndentation
-        [4, 3], [4, 5], [5, 3],
-        [5, 4], [5, 5]
-      ]) # rubocop:disable Layout/FirstArrayElementIndentation
+      expected_moves = [
+        [3, 3], [3, 4], [3, 5],
+        [4, 3],         [4, 5],
+        [5, 3], [5, 4], [5, 5]
+      ]
+
+      expect(king.valid_moves(board)).to match_array(expected_moves)
     end
   end
 end
