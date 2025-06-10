@@ -4,15 +4,7 @@ require './spec/spec_helper'
 require 'colorize'
 require_relative '../lib/chess'
 
-RSpec.describe Chess::King do
-  describe '#initialize' do
-    it 'initializes the instance variables: location, color' do
-      piece = Chess::King.new([0, 0], :white)
-      expect(piece.location).to eq([0, 0])
-      expect(piece.color).to eq(:white)
-    end
-  end
-
+RSpec.describe Chess::Knight do
   describe '#valid_moves' do
     it 'returns all valid L-shaped moves for a central knight on empty board' do
       board = double('board')
@@ -20,7 +12,6 @@ RSpec.describe Chess::King do
       allow(board).to receive(:[]).and_return(nil)
 
       knight = Chess::Knight.new([4, 4], :white)
-
       expected_moves = [
         [2, 3], [2, 5], [3, 2], [3, 6],
         [5, 2], [5, 6], [6, 3], [6, 5]
@@ -33,13 +24,11 @@ RSpec.describe Chess::King do
       board = double('board')
       allow(board).to receive(:in_bounds?) { |pos| pos.all? { |i| i.between?(0, 7) } }
 
-      # simulate a board with one friendly and one enemy piece
-      allow(board).to receive(:[]).with(2, 3).and_return(double('Piece', color: :white)) # friendly
+      allow(board).to receive(:[]).with(2, 3).and_return(double('Piece', color: :white)) # ally
       allow(board).to receive(:[]).with(2, 5).and_return(double('Piece', color: :black)) # enemy
-      allow(board).to receive(:[]).and_return(nil) # all other positions are empty
+      allow(board).to receive(:[]).and_return(nil)
 
       knight = Chess::Knight.new([4, 4], :white)
-
       expected_moves = [
         [2, 5], [3, 2], [3, 6],
         [5, 2], [5, 6], [6, 3], [6, 5]
