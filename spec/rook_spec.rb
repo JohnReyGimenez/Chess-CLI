@@ -17,11 +17,15 @@ RSpec.describe Chess::Rook do
     it 'returns the legal and capture moves from current position' do
       board = double('board')
       allow(board).to receive(:in_bounds?).and_return(true)
-      allow(board).to receive(:[]).and_return(nil) # simulate empty squares
+      allow(board).to receive(:[]).and_return(nil)
 
-      piece = Chess::Bishop.new([0, 2], :white)
-      expect(piece.valid_moves(board)).to include([1, 3], [2, 4], [1, 1], [2, 0])
-      puts piece.valid_moves(board).inspect
+      rook = Chess::Rook.new([3, 3], :white)
+      expected_moves = [
+        [3, 0], [3, 1], [3, 2], [3, 4], [3, 5], [3, 6], [3, 7],
+        [0, 3], [1, 3], [2, 3], [4, 3], [5, 3], [6, 3], [7, 3]
+      ]
+
+      expect(rook.valid_moves(board)).to match_array(expected_moves)
     end
   end
 end
