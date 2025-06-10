@@ -13,22 +13,20 @@ RSpec.describe Chess::Bishop do
     end
   end
 
-  describe Chess::Bishop do
-    describe '#valid_moves' do
-      it 'returns all diagonal legal moves from a central position' do
-        board = Chess::Board.new
-        bishop = Chess::Bishop.new([3, 3], :white)
-        board[[3, 3]] = bishop
+  describe '#valid_moves' do
+    it 'returns all diagonal legal moves from a central position' do
+      board = Chess::Board.new
+      bishop = Chess::Bishop.new([3, 3], :white)
+      board[[3, 3]] = bishop
 
-        expected_moves = [
-          [2, 2], [1, 1], [0, 0],     # up-left
-          [2, 4], [1, 5], [0, 6],     # up-right
-          [4, 2], [5, 1], [6, 0],     # down-left
-          [4, 4], [5, 5], [6, 6], [7, 7] # down-right
-        ]
+      expected_moves = [
+        [2, 2], [1, 1], [0, 0],
+        [2, 4], [1, 5], [0, 6],
+        [4, 2], [5, 1], [6, 0],
+        [4, 4], [5, 5], [6, 6], [7, 7]
+      ]
 
-        expect(bishop.valid_moves(board)).to match_array(expected_moves)
-      end
+      expect(bishop.valid_moves(board)).to match_array(expected_moves)
     end
   end
 end
