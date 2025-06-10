@@ -17,10 +17,10 @@ RSpec.describe Chess::Pawn do
     it 'returns the valid forward and capture moves from current position' do
       board = double('board')
       allow(board).to receive(:in_bounds?).and_return(true)
-      allow(board).to receive(:[]).and_return(nil) # simulate empty squares
+      allow(board).to receive(:[]).and_return(nil)
 
-      piece = Chess::Pawn.new([1, 0], :white)
-      expect(piece.valid_moves(board)).to include([2, 0], [3, 0])
+      pawn = Chess::Pawn.new([1, 0], :white)
+      expect(pawn.valid_moves(board)).to include([2, 0], [3, 0])
     end
   end
 end
