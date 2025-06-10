@@ -2,6 +2,8 @@
 
 A command-line Chess game built with Ruby. This project focuses on object-oriented programming, game logic, and command-line interaction.
 
+![Gameplay Demo](./media/gameplay.gif)
+
 ## Features
 
 - Two-player chess game in the terminal
