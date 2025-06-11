@@ -41,14 +41,14 @@ A command-line Chess game built with Ruby. This project focuses on object-orient
 
 ---
 
-### Core Logic Test Suite
+## Core Logic Test Suite
 This project includes a lightweight RSpec test suite focused on validating movement logic and initial configurations for chess pieces.
 
-## What's Covered
+### What's Covered
 - Initialization of piece instance variables (location and color)  
 - Valid movement logic for all pieces valid moves
 
-## File Structure
+### File Structure
 ```
 spec/
 └── pieces/
@@ -60,7 +60,7 @@ spec/
     └── king_spec.rb
 ```
 
-## How to Run Tests  
+### How to Run Tests  
 ```
 gem install rspec  # If not installed
 ```
@@ -73,5 +73,5 @@ rspec spec/pawn_spec.rb  # For specific piece tests
 
 **Note:** While this test suite verifies core piece behaviors, you should test other game aspects by actually playing the game. Run the program and verify through gameplay: special rules like castling, en passant, checkmate conditions, and board rendering. For missing test coverage, manually verify key scenarios by playing different game situations.
 
-### License
+## License
 This project is open-source and available under the  [MIT License](LICENSE).
