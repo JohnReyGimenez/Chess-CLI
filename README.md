@@ -36,22 +36,20 @@ A command-line Chess game built with Ruby. This project focuses on object-orient
    ```bash
    ruby main.rb
 
+---
+
 ## Inspiration
 
 UI style and board rendering logic heavily inspired by Lucas Sorribes' [Ruby Chess blog](https://medium.com/@lucas.sorribes/nostromo-my-ruby-chess-journey-part-i-7ef544b547a5) and  [sapphire-chess](https://github.com/devluxor/sapphire-chess).
+
+---
 
 ### Core Logic Test Suite
 This project includes a lightweight RSpec test suite focused on validating movement logic and initial configurations for chess pieces.
 
 ## What's Covered
-- Initialization of piece objects (e.g., color, position, state)  
-- Valid movement logic for:  
-  - Pawn (including en passant and promotion)  
-  - Rook (castling verification)  
-  - Knight (L-shaped movement)  
-  - Bishop (diagonal clearance)  
-  - Queen (compound movements)  
-  - King (check awareness)  
+- Initialization of piece instance variables (location and color)  
+- Valid movement logic for all pieces valid moves
 
 ## File Structure
 ```
@@ -67,14 +65,16 @@ spec/
 
 ## How to Run Tests  
 ```
-rspec --format documentation  # For verbose output
-```
-```
-rspec spec/pieces/pawn_spec.rb  # For specific piece tests
-```
-
-**Note:** While this test suite verifies core piece behaviors, you should test other game aspects by actually playing the game - run the program and verify through gameplay: special rules like castling, en passant, checkmate conditions, and board rendering. For missing test coverage, manually verify key scenarios by playing different game situations.
-
-```
 gem install rspec  # If not installed
 ```
+```
+rspec
+```
+```
+rspec spec/pawn_spec.rb  # For specific piece tests
+```
+
+**Note:** While this test suite verifies core piece behaviors, you should test other game aspects by actually playing the game. Run the program and verify through gameplay: special rules like castling, en passant, checkmate conditions, and board rendering. For missing test coverage, manually verify key scenarios by playing different game situations.
+
+### License
+This project is open-source and available under the  [MIT License](LICENSE).
