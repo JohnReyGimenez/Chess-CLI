@@ -2,6 +2,10 @@
 
 A command-line Chess game built with Ruby. This project focuses on object-oriented programming, game logic, and command-line interaction.
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/JohnReyGimenez/Chess-CLI/media/gameplay.gif" width="500" />
+</p>
+
 ![Gameplay Demo](./media/gameplay.gif)
 
 ## Features
