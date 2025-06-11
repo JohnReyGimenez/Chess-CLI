@@ -1,10 +1,12 @@
 # Chess
 
-A command-line Chess game built with Ruby. This project focuses on object-oriented programming, game logic, and command-line interaction.
+A command-line Chess game built with Ruby. This project focuses on object-oriented programming, game logic, and command-line interaction. UI style and board rendering logic heavily inspired by Lucas Sorribes' [Ruby Chess blog](https://medium.com/@lucas.sorribes/nostromo-my-ruby-chess-journey-part-i-7ef544b547a5) and  [sapphire-chess](https://github.com/devluxor/sapphire-chess).
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/JohnReyGimenez/Chess-CLI/main/media/gameplay.gif" width="500" />
 </p>
+
+---
 
 ## Features
 
@@ -20,6 +22,7 @@ A command-line Chess game built with Ruby. This project focuses on object-orient
 - **Bundler**: Install Bundler to manage dependencies.
   ```bash
    gem install bundler
+
 ---
 
 ## Installation
@@ -35,12 +38,6 @@ A command-line Chess game built with Ruby. This project focuses on object-orient
 4. Run the game.
    ```bash
    ruby main.rb
-
----
-
-## Inspiration
-
-UI style and board rendering logic heavily inspired by Lucas Sorribes' [Ruby Chess blog](https://medium.com/@lucas.sorribes/nostromo-my-ruby-chess-journey-part-i-7ef544b547a5) and  [sapphire-chess](https://github.com/devluxor/sapphire-chess).
 
 ---
 
