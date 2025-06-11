@@ -52,12 +52,12 @@ This project includes a lightweight RSpec test suite focused on validating movem
 ```
 spec/
 └── pieces/
-    ├── pawn_spec.rb
-    ├── rook_spec.rb
-    ├── knight_spec.rb
     ├── bishop_spec.rb
+    ├── king_spec.rb
+    ├── knight_spec.rb
+    ├── pawn_spec.rb
     ├── queen_spec.rb
-    └── king_spec.rb
+    └── rook_spec.rb
 ```
 
 ### How to Run Tests  
