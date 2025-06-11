@@ -73,5 +73,7 @@ rspec spec/pawn_spec.rb  # For specific piece tests
 
 **Note:** While this test suite verifies core piece behaviors, you should test other game aspects by actually playing the game. Run the program and verify through gameplay: special rules like castling, en passant, checkmate conditions, and board rendering. For missing test coverage, manually verify key scenarios by playing different game situations.
 
+---
+
 ## License
 This project is open-source and available under the  [MIT License](LICENSE).
