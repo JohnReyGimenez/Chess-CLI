@@ -2,6 +2,9 @@
 
 A command-line Chess game built with Ruby. This project focuses on object-oriented programming, game logic, and command-line interaction. UI style and board rendering logic heavily inspired by Lucas Sorribes' [Ruby Chess blog](https://medium.com/@lucas.sorribes/nostromo-my-ruby-chess-journey-part-i-7ef544b547a5) and  [sapphire-chess](https://github.com/devluxor/sapphire-chess).
 
+---
+
+## Live-Demo
 <p align="center">
   <img src="https://raw.githubusercontent.com/JohnReyGimenez/Chess-CLI/main/media/gameplay.gif" width="500" />
 </p>
