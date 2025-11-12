@@ -33,7 +33,7 @@ A command-line Chess game built with Ruby. This project focuses on object-orient
 1. Fork the Repository:
 2. Clone the repository.
    ```bash
-   git@github.com:JohnReyGimenez/Chess-CLI.git
+   git clone git@github.com:JohnReyGimenez/Chess-CLI.git
 3. Install dependencies using Bundler.
    ```bash
    bundle install
