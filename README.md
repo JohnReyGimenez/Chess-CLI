@@ -31,7 +31,6 @@ A command-line Chess game built with Ruby. This project focuses on object-orient
 ## Installation
 
 1. Fork the Repository:
-   - Go to the [Chess-CLI](https://github.com/JohnReyGimenez/Chess-CLI) repository and click the Fork button to create your own copy of the project.
 2. Clone the repository.
    ```bash
    git@github.com:JohnReyGimenez/Chess-CLI.git
@@ -50,18 +49,6 @@ This project includes a lightweight RSpec test suite focused on validating movem
 ### What's Covered
 - Initialization of piece instance variables (location and color)  
 - Valid movement logic for all pieces valid moves
-
-### File Structure
-```
-spec/
-└── pieces/
-    ├── bishop_spec.rb
-    ├── king_spec.rb
-    ├── knight_spec.rb
-    ├── pawn_spec.rb
-    ├── queen_spec.rb
-    └── rook_spec.rb
-```
 
 ### How to Run Tests  
 ```
